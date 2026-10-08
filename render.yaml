@@ -1,5 +1,6 @@
 # One-click deploy on Render's free plan. Use a SEPARATE Render workspace from the scam checker:
 # free instance hours (750 a month) are per workspace, and the scam checker stays awake all month.
+# This app keeps itself awake too (KEEP_AWAKE=auto pings RENDER_EXTERNAL_URL every 10 minutes).
 services:
   - type: web
     name: will-my-policy-pay

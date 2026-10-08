@@ -95,3 +95,15 @@ def test_catalogue_card_when_present(client):
     card = c.get(f"/api/card/{entry}").json()
     assert card["groups"] and "calc" in card and card["meta"]["insurer"]
     assert c.get("/api/card/nope").status_code == 404
+
+
+def test_keep_awake_setting(monkeypatch):
+    import fineprint.config as cfg
+    monkeypatch.setenv("RENDER_EXTERNAL_URL", "https://x.onrender.com/")
+    monkeypatch.setenv("KEEP_AWAKE", "auto")
+    assert importlib.reload(cfg).KEEP_AWAKE_URL == "https://x.onrender.com"
+    monkeypatch.setenv("KEEP_AWAKE", "off")
+    assert importlib.reload(cfg).KEEP_AWAKE_URL == ""
+    monkeypatch.delenv("RENDER_EXTERNAL_URL")
+    monkeypatch.setenv("KEEP_AWAKE", "auto")
+    assert importlib.reload(cfg).KEEP_AWAKE_URL == ""

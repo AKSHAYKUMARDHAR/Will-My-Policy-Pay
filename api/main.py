@@ -103,8 +103,8 @@ async def keep_awake(url: str, every_s: float) -> None:
 
 @asynccontextmanager
 async def lifespan(_app):
-    url = os.getenv("KEEP_AWAKE_URL", "").rstrip("/")
-    task = asyncio.create_task(keep_awake(url, 600)) if url else None
+    url = config.KEEP_AWAKE_URL
+    task = asyncio.create_task(keep_awake(url, 60 * config.KEEP_AWAKE_MINUTES)) if url else None
     yield
     if task:
         task.cancel()
@@ -244,7 +244,8 @@ async def stats(x_stats_token: str | None = Header(None)):
 @app.get("/healthz")
 async def healthz():
     return {"ok": True, "model": getattr(provider, "model", None), "catalogue": len(catalogue),
-            "commit": (os.getenv("RENDER_GIT_COMMIT") or os.getenv("GIT_COMMIT", ""))[:7] or None}
+            "commit": os.getenv("RENDER_GIT_COMMIT", "")[:7] or None,
+            "keep_awake": bool(config.KEEP_AWAKE_URL)}
 
 
 @app.get("/")

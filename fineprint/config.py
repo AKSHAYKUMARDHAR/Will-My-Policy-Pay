@@ -24,3 +24,10 @@ MAX_PDF_BYTES = _int("MAX_PDF_BYTES", "15000000")
 MAX_PDF_PAGES = _int("MAX_PDF_PAGES", "150")
 RATE_LIMIT_PER_HOUR = _int("RATE_LIMIT_PER_HOUR", "6")   # uploads per IP per hour
 LOG_PATH = os.getenv("LOG_PATH", "data/logs/events.jsonl")
+
+# Keep a free Render instance awake: it sleeps after 15 minutes without inbound traffic, and a request
+# to its own public URL counts. "auto" = on when Render sets RENDER_EXTERNAL_URL; "off" = never; a URL = ping that.
+_KEEP = os.getenv("KEEP_AWAKE", "auto").strip()
+KEEP_AWAKE_URL = (os.getenv("RENDER_EXTERNAL_URL", "") if _KEEP.lower() == "auto"
+                  else "" if _KEEP.lower() in ("off", "0", "false", "no") else _KEEP).strip().rstrip("/")
+KEEP_AWAKE_MINUTES = _float("KEEP_AWAKE_MINUTES", "10")

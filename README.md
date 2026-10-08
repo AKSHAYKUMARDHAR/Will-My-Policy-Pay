@@ -119,18 +119,20 @@ python -m scripts.build_catalogue                        # ready-made cards from
 The Docker image serves the app on `$PORT` (default 8000) and needs one secret, `GEMINI_API_KEY`,
 ideally from its own Google project so the free daily requests aren't shared.
 
-- **Hugging Face Spaces** (the live app): [.github/workflows/deploy-space.yml](.github/workflows/deploy-space.yml)
-  runs the tests and then [scripts/deploy_space.py](scripts/deploy_space.py) on every push to `main`
-  that changes the app. The script creates the Docker Space if needed (`<user>/will-my-policy-pay`, or
-  the `HF_SPACE` repository variable) and uploads only what the image needs, with a README holding
-  the Space settings (`sdk: docker`, `app_port: 8000`). Setup: a Hugging Face write token as the
-  `HF_TOKEN` repository secret, then `GEMINI_API_KEY` as a secret in the Space's settings.
-  `python -m scripts.deploy_space --dry-run` lists what would be uploaded.
-- **Render**: [render.yaml](render.yaml) is a one-click blueprint. Use a workspace of its own: free
-  instance hours (750 a month) are counted per workspace.
+[render.yaml](render.yaml) deploys it on Render's free plan in Singapore, the closest region to India.
+Use a workspace of its own: free instance hours (750 a month) are counted per workspace, and the scam
+checker's always-on service uses its workspace's hours.
+
+- **Staying awake.** The free plan sleeps after 15 minutes without inbound traffic. The app pings its
+  own public URL every 10 minutes (`KEEP_AWAKE`, on by default on Render; `off` turns it off), which
+  uses about 744 of the 750 hours a month. `/healthz` never calls the model, so the pings cost no quota.
+- `/healthz` reports the deployed commit and whether keep-awake is on.
+- `/api/stats` is protected by a generated `STATS_TOKEN` (send it as `X-Stats-Token`).
+- Hugging Face Spaces was the first choice, but since 2026 new free accounts can't create Docker
+  Spaces on free hardware.
 
 The ready-made cards ship in the image (`data/catalogue.json`), so they work with no API key; only
-uploads call Gemini. `/healthz` reports the deployed commit.
+uploads call Gemini.
 
 ## API
 
@@ -160,7 +162,7 @@ api/        FastAPI app
 web/        index.html, styles.css, app.js (English only)
 data/       documents.json (frozen manifest), labels_dev.json, labels_holdout.json, LABEL_GUIDE.md, catalogue.json
 eval/       run_eval.py, check_labels.py, cache/ (model answers), results/
-scripts/    fetch_documents.py, build_catalogue.py, render_prd.py, deploy_space.py
+scripts/    fetch_documents.py, build_catalogue.py, render_prd.py
 tests/      calculator (25 hand-worked bills), extraction safeguards, API
 docs/       PRD.md and PRD.html
 ```
