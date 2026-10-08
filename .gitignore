@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+.DS_Store
+# Insurer PDFs are fetched by scripts/fetch_documents.py, not redistributed
+data/pdfs/
+data/logs/
