@@ -48,7 +48,7 @@ runs on **real, public policy documents**, not test data I wrote.
 
 ## Evaluation design
 
-- **14 real documents**, policy wordings, customer information sheets and prospectuses from 9
+- **14 real documents**, policy wordings, customer information sheets and prospectuses from 10
   insurers, frozen in git ([data/documents.json](data/documents.json), commit `e0f3e83`) before any
   prompt existed: 5 dev documents to build on, 9 held-out documents run once for the release gate.
   The manifest pins each file's URL, UIN and SHA-256; [scripts/fetch_documents.py](scripts/fetch_documents.py)
@@ -79,7 +79,7 @@ runs on **real, public policy documents**, not test data I wrote.
 What the dev runs showed:
 
 - **The checks are the product.** The same two reads without verification showed 7 wrong facts;
-  with the checks, 1. The catch is withheld facts, which version 2 of the prompt reduced from 21 to 5
+  with the checks, 1. The catch is withheld facts, which version 2 of the prompt cut from 25% to 7%
   by asking for the words that set each value.
 - **A summary that lists a benefit doesn't state its limit.** The worst early error called ambulance
   cover "up to your sum insured" from a line that only said "Expenses incurred towards Ambulance".
