@@ -1,0 +1,809 @@
+{
+  "note": "Answer key for the held-out documents. Written from the documents alone on 2026-10-08, before any extraction prompt existed. See LABEL_GUIDE.md. Never edited after a run.",
+  "documents": [
+    {
+      "id": "H01",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "percent_si:1",
+          "page": 10,
+          "quote": "Nursing (Including Injection / Drugs and Intra venous fluid administration expenses), not exceeding 1% of the Sum Insured per day"
+        },
+        "icu": {
+          "value": "percent_si:2",
+          "page": 10,
+          "quote": "Monitor and Pulse Oxymeter expenses not exceeding 2% of the Sum Insured per day"
+        },
+        "copay": {
+          "value": "0",
+          "page": 13,
+          "quote": "If the Insured person opts for voluntary co -pay of 20%, a discount of 15% shall be of given on the premium payable for the Insured Person",
+          "note": "co-payment only as an optional cover"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 18,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "48",
+          "page": 16,
+          "quote": "shall be excluded until the expiry of 48 months of continuous"
+        },
+        "specific_waiting_months": {
+          "value": "3,24,36,48",
+          "page": 17,
+          "quote": "shall be excluded until the expiry of Ninety Days / 24 / 36/ 48 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 20,
+          "quote": "MATERNITY EXPENSES (Code - Excl18) a. Medical treatment expenses traceable to childbirth",
+          "note": "covered only under Optional Cover II"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 10,
+          "quote": "Pre-Hospitalization Medical expenses for up to 30 days"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 10,
+          "quote": "Post-Hospitalization Medical expenses for up to 60 days"
+        },
+        "cataract": {
+          "value": "percent_si:20,cap:50000",
+          "page": 10,
+          "quote": "for each eye, shall not exceed 20% of the Sum Insured subject to a maximum of Rs. 50,000"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 11,
+          "quote": "then the Sum Insured shall be reinstated to the Sum Insured stated in the Schedule",
+          "note": "only for sum insured of ₹5 lakh or more"
+        },
+        "ncb": {
+          "value": "25,max:50",
+          "page": 14,
+          "quote": "The Sum Insured under Policy shall be increased by 25% at each renewal in respect of each claim free year of insurance, subject to maximum of 50%"
+        },
+        "ambulance": {
+          "value": "percent_si:1",
+          "page": 11,
+          "quote": "charges for Ambulance services not exceeding 1% of the Sum Insured per Insured event"
+        },
+        "modern_treatments": {
+          "value": "varies",
+          "page": 15,
+          "quote": "up to the limit specified against each procedure during the policy period"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 10,
+          "quote": "Homeopathy systems of medicines is covered up to 100% of Sum Insured"
+        }
+      }
+    },
+    {
+      "id": "H02",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the CIS does not list sum insured options; Arogya Sanjeevani is sold at ₹5 lakh"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "percent_si:2,cap:5000",
+          "page": 2,
+          "quote": "Up to 2 % of the Sum Insured or Maximum Rs 5000/-"
+        },
+        "icu": {
+          "value": "percent_si:5,cap:10000",
+          "page": 2,
+          "quote": "5% of the Sum Insured or maximum Rs 10000/- per day for Room rent and ICU respectively"
+        },
+        "copay": {
+          "value": "5",
+          "page": 2,
+          "quote": "ii. Co-Payment 5%"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 2,
+          "quote": "Deductible/ Any Other limit as applicable Not applicable"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 2,
+          "quote": "Initial Waiting period: First 30 days from date of inception"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 2,
+          "quote": "PRE-EXISTING DISEASES (Code- Excl01)-36 Months"
+        },
+        "specific_waiting_months": {
+          "value": "24,36",
+          "page": 2,
+          "quote": "24 and 36 months for listed illnesses"
+        },
+        "maternity": {
+          "value": "not_stated"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 1,
+          "quote": "Pre-hospitalisation (treatment prior to admission in hospital) of 30 days"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 1,
+          "quote": "Post-Hospitalisation Treatment within 60 days from date of discharge"
+        },
+        "cataract": {
+          "value": "percent_si:25,cap:40000",
+          "page": 2,
+          "quote": "Cataract Treatment: Up to 25% of Sum Insured or Rs.40,000/-, whichever is lower, per eye"
+        },
+        "restoration": {
+          "value": "not_stated"
+        },
+        "ncb": {
+          "value": "not_stated"
+        },
+        "ambulance": {
+          "value": "amount:2000",
+          "page": 1,
+          "quote": "Road Ambulance maximum of Rs.2000/- per hospitalisation"
+        },
+        "modern_treatments": {
+          "value": "percent_si:50",
+          "page": 1,
+          "quote": "Coverage For 12 Modern Treatments up to 50% of Sum Insured"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 1,
+          "quote": "Coverage for AYUSH Treatment Up to 100% of Sum Insured"
+        }
+      }
+    },
+    {
+      "id": "H03",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the CIS does not list sum insured options"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "percent_si:2,cap:5000",
+          "page": 1,
+          "quote": "up to 2% of the sum insured subject to maximum of Rs.5000/-, per day"
+        },
+        "icu": {
+          "value": "percent_si:5,cap:10000",
+          "page": 1,
+          "quote": "expenses up to 5% of sum insured subject to maximum of Rs.10,000/- per day"
+        },
+        "copay": {
+          "value": "not_stated",
+          "note": "the CIS refers to the policy wording for financial limits; the standard product's 5% co-payment is not in this document"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 6,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 6,
+          "quote": "shall be excluded until the expiry of 36 months of continuous coverage"
+        },
+        "specific_waiting_months": {
+          "value": "24,36",
+          "page": 7,
+          "quote": "shall be excluded until the expiry of 24/36 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_stated"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 3,
+          "quote": "for a fixed period of 30 days prior to the date of admissible hospitalization"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 3,
+          "quote": "for a fixed period of 60 days from the date of discharge"
+        },
+        "cataract": {
+          "value": "percent_si:25,cap:40000",
+          "page": 3,
+          "quote": "subject to a limit of 25% of Sum Insured or Rs.40,000/-, whichever is lower, per each eye in one policy year"
+        },
+        "restoration": {
+          "value": "not_stated"
+        },
+        "ncb": {
+          "value": "not_stated"
+        },
+        "ambulance": {
+          "value": "amount:2000",
+          "page": 2,
+          "quote": "Expenses incurred on road Ambulance subject to a maximum of Rs.2000/- per hospitalisation"
+        },
+        "modern_treatments": {
+          "value": "percent_si:50",
+          "page": 2,
+          "quote": "either as in patient or as part of day care treatment in a hospital upto 50% of Sum Insured"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 3,
+          "quote": "up to the limit of sum insured as specified in the policy schedule in any AYUSH Hospital"
+        }
+      }
+    },
+    {
+      "id": "H04",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "single_private_room",
+          "page": 10,
+          "quote": "5,00,000/- Single Standard A/C Room"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 10,
+          "quote": "Anaesthesia, Blood, Oxygen, Operation theatre charges, ICU charges",
+          "note": "ICU charges covered with no separate limit"
+        },
+        "copay": {
+          "value": "not_stated",
+          "note": "the only mandatory co-payment is age-based"
+        },
+        "copay_senior": {
+          "value": "20,age:61",
+          "page": 21,
+          "quote": "This policy is subject to co-payment of 20% of each and every claim amount for fresh as well as renewal policies for Insured Persons whose age at the time of entry is 61 years and above"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 29,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 28,
+          "quote": "shall be excluded until the expiry of 36 months of continuous coverage after the date of inception of the first policy with insurer"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 28,
+          "quote": "shall be excluded until the expiry of 24 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 31,
+          "quote": "Maternity - Code Excl 18 i. Medical treatment expenses traceable to childbirth"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 12,
+          "quote": "Pre-Hospitalization medical expenses incurred for a period not exceeding 60 days prior to the date of hospitalization"
+        },
+        "post_hosp_days": {
+          "value": "90",
+          "page": 12,
+          "quote": "Post-Hospitalization medical expenses incurred for a period of 90 days from the date of discharge"
+        },
+        "cataract": {
+          "value": "amount:40000",
+          "page": 10,
+          "quote": "5,00,000/- Up to 40,000/- Up to 60,000/-",
+          "note": "per eye; ₹60,000 per policy period"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 14,
+          "quote": "Such Automatic Restoration is available 3 times at 100% each time"
+        },
+        "ncb": {
+          "value": "10,max:100",
+          "page": 14,
+          "quote": "the Insured Person shall be eligible for a Loyalty Bonus of 10% of the expiring Sum Insured subject to a maximum accumulation of 100% of the Sum Insured",
+          "note": "a loyalty bonus, earned whether or not you claim"
+        },
+        "ambulance": {
+          "value": "amount:750",
+          "page": 12,
+          "quote": "road ambulance expenses up to Rs.750/- per hospitalization"
+        },
+        "modern_treatments": {
+          "value": "varies",
+          "page": 11,
+          "quote": "is limited to the amount mentioned in table below"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 10,
+          "quote": "Siddha and Homeopathy systems of medicines in a AYUSH Hospital is payable up to the Sum Insured"
+        }
+      }
+    },
+    {
+      "id": "H05",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "no_limit",
+          "page": 20,
+          "quote": "The eligible Room Rent or Room Category applicable for the Insured Person under the Policy is 'No limit'"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 20,
+          "quote": "The eligible ICU Charges applicable for the Insured Person under the Policy is 'No limit'"
+        },
+        "copay": {
+          "value": "0",
+          "page": 15,
+          "quote": "The Co-payment proportion ( If opted ) shall be borne by the Insured Person on each Claim",
+          "note": "co-payment only if opted"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 15,
+          "quote": "Deductible Option (if opted) is applicable on the Benefits",
+          "note": "deductible only if opted"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 36,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 34,
+          "quote": "shall be excluded until the expiry of 36 months of continuous coverage after the date of inception of the first policy with insurer"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 34,
+          "quote": "shall be excluded until the expiry of 24 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 39,
+          "quote": "Maternity: (Code Excl18) a. Medical treatment expenses traceable to childbirth"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 17,
+          "quote": "For a period of 60 days immediately prior to the Insured Person's date of admission to the Hospital"
+        },
+        "post_hosp_days": {
+          "value": "180",
+          "page": 18,
+          "quote": "For a period of 180 days immediately after the Insured Person's date of discharge from the hospital"
+        },
+        "cataract": {
+          "value": "not_stated",
+          "note": "no cataract limit anywhere; only an explicit statement would count"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 22,
+          "quote": "automatically make the re-instatement of up to the base Sum Insured unlimited times in a policy year"
+        },
+        "ncb": {
+          "value": "50,max:100",
+          "page": 21,
+          "quote": "the accrued Cumulative Bonus, shall not exceed 100% of the Sum Insured",
+          "note": "50% a year, not affected by claims (p20-21)"
+        },
+        "ambulance": {
+          "value": "up_to_si",
+          "page": 20,
+          "quote": "Road Ambulance Cover The Company will indemnify the Insured Person, through Cashless or Reimbursement Facility, up to the Sum Insured"
+        },
+        "modern_treatments": {
+          "value": "up_to_si",
+          "page": 17,
+          "quote": "Insured Person up to the Sum Insured, as specified in the Policy Schedule, for expenses incurred under Benefit 'Hospitalization expenses ' for treatment taken through following advance technology methods"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 18,
+          "quote": "up to the Sum Insured, as specified in the Policy Schedule, towards Medical Expenses incurred with respect to the Insured Person's medical treatment undergone at any AYUSH Hospitals"
+        }
+      }
+    },
+    {
+      "id": "H06",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh appears among the sum insured examples (p16)"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "single_private_room",
+          "page": 11,
+          "quote": "Room Rent up to a Single Private AC room"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 11,
+          "quote": "Room Rent up to a Single Private AC room; ii. Intensive Care Unit Charges",
+          "note": "ICU charges listed in the in-patient cover with no separate limit"
+        },
+        "copay": {
+          "value": "0",
+          "page": 53,
+          "quote": "Voluntary Co-Payment We will provide a corresponding discount on the premium payable under the Policy and You shall bear the Co-payment percentage",
+          "note": "co-payment only as an optional cover"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 28,
+          "quote": "Optional Cover 20 -Voluntary Deductible",
+          "note": "deductible only as an optional cover"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 85,
+          "quote": "Treatment of any Illness within 30 days from the first Policy start date, except covered claims arising due to an Accident"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 83,
+          "quote": "Treatment of a Pre-existing Disease and its direct complications, until the expiry of 36 months of continuous coverage"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 84,
+          "quote": "until the expiry of 24 months of continuous coverage after the date of inception of the first Policy with us"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 87,
+          "quote": "Maternity: Code Excl18 a. Treatment traceable to childbirth"
+        },
+        "pre_hosp_days": {
+          "value": "90",
+          "page": 13,
+          "quote": "incurred by You immediately 90 days before Your admission to Hospital"
+        },
+        "post_hosp_days": {
+          "value": "180",
+          "page": 13,
+          "quote": "incurred by You immediately 180 days following Your discharge from Hospital"
+        },
+        "cataract": {
+          "value": "not_stated",
+          "note": "the ₹30,000 per eye cap on p65 belongs to an optional add-on"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 16,
+          "quote": "We will reset up to 100% of the Sum Insured in a Policy Year for unlimited times"
+        },
+        "ncb": {
+          "value": "20,max:100",
+          "page": 15,
+          "quote": "We will provide a Loyalty Bonus of 20% of the expiring or renewed Sum Insured (whichever is lower) at the end of each Policy Year",
+          "note": "regardless of claims; capped at 100%"
+        },
+        "ambulance": {
+          "value": "up_to_si",
+          "page": 13,
+          "quote": "We will cover the Medical Expenses incurred on road ambulance services"
+        },
+        "modern_treatments": {
+          "value": "up_to_si",
+          "page": 12,
+          "quote": "We will cover the Medical Expenses incurred in respect of Your Hospitalization for the following Technological Advancements and Treatments"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 13,
+          "quote": "We will cover the Medical Expenses incurred in respect of Your Hospitalisation for the AYUSH Treatment"
+        }
+      }
+    },
+    {
+      "id": "H07",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the wording does not list sum insured options"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated",
+          "note": "the in-patient cover names no room limit; any limit would be in the schedule"
+        },
+        "icu": {
+          "value": "not_stated"
+        },
+        "copay": {
+          "value": "not_stated"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 20,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "24",
+          "page": 21,
+          "quote": "Expenses related to the treatment of a pre -existing Disease (PED) and its direct complications shall be excluded until the expiry of 24 months"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 20,
+          "quote": "Expenses related to the treatment of the listed Conditions, surgeries/treatments shall be excluded until the expiry of 24 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 23,
+          "quote": "Maternity (Code - Excl 18) : a. Medical treatment expenses traceable to childbirth"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 9,
+          "quote": "incurred upto 60 days before the date of admission to the hospital"
+        },
+        "post_hosp_days": {
+          "value": "90",
+          "page": 10,
+          "quote": "incurred upto 90 days after discharge from the hospital"
+        },
+        "cataract": {
+          "value": "not_stated"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 11,
+          "quote": "We will automatically restore the Basic Sum Insured if the Sum Insured and accrued Cumulative Bonus is insufficient to pay a claim"
+        },
+        "ncb": {
+          "value": "20,max:100",
+          "page": 17,
+          "quote": "20% cumulative bonus will be applied on the Sum Insured of the expiring Policy, on each Renewal after every claim free Policy Period"
+        },
+        "ambulance": {
+          "value": "amount:10000",
+          "page": 12,
+          "quote": "subject to maximum upto Rs. 10,000 per Hospitalization"
+        },
+        "modern_treatments": {
+          "value": "up_to_si",
+          "page": 10,
+          "quote": "We will cover medical expenses incurred towards Modern Treatment Methods and Advancement in Technologies"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 11,
+          "quote": "We will cover Medical Expenses incurred for treatment as In-Patient or Day Care Treatment in an AYUSH Hospital"
+        }
+      }
+    },
+    {
+      "id": "H08",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is a base sum insured option (p2); the flagship plan's defaults"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "no_limit",
+          "page": 6,
+          "quote": "Room rent limit shall be 'At Actuals' unless otherwise specified in the Policy Schedule"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 6,
+          "quote": "ICU limit (including ICCU) for bed charges shall be 'At Actuals' unless otherwise specified in the Policy Schedule"
+        },
+        "copay": {
+          "value": "not_stated"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated",
+          "note": "an aggregate deductible applies only where the schedule specifies one"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 33,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first Policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 31,
+          "quote": "shall be excluded until the expiry of 36 months"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 32,
+          "quote": "shall be excluded until the expiry of 24 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 35,
+          "quote": "Maternity: Code – Excl18 i. Medical treatment expenses traceable to childbirth"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 7,
+          "quote": "incurred upto 60 days unless otherwise specified in the Policy Schedule, immediately prior to the date of admission"
+        },
+        "post_hosp_days": {
+          "value": "180",
+          "page": 8,
+          "quote": "incurred upto 180 days unless otherwise specified in the Policy Schedule, immediately post the date of discharge from the Hospital"
+        },
+        "cataract": {
+          "value": "not_stated"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 1,
+          "quote": "Automatic Restore Benefits restores 100% of Base Sum Insured automatically"
+        },
+        "ncb": {
+          "value": "skip",
+          "note": "depends on the plan: a 10% cumulative bonus on three plans, a 50% Plus Benefit on others; the label assumptions can't decide"
+        },
+        "ambulance": {
+          "value": "up_to_si",
+          "page": 6,
+          "quote": "Expenses incurred on road Ambulance if the Insured Person is required to be transferred to the nearest Hospital for Emergency Care"
+        },
+        "modern_treatments": {
+          "value": "not_stated"
+        },
+        "ayush": {
+          "value": "not_stated",
+          "note": "capped at a sub-limit stated only in the policy schedule"
+        }
+      }
+    },
+    {
+      "id": "H09",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the wording offers plan options set in the policy schedule; labels list the options"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "options:no_limit|percent_si:1|single_private_room",
+          "page": 9,
+          "quote": "1% of base Sum Insured (excluding cumulative / enhanced cumulative bonus) OR"
+        },
+        "icu": {
+          "value": "options:no_limit|percent_si:2",
+          "page": 9,
+          "quote": "2% of the base Sum Insured (excluding cumulative / enhanced cumulative bonus) OR"
+        },
+        "copay": {
+          "value": "0",
+          "page": 14,
+          "quote": "On availing this option, 10% or 20% Co-Payment as specified in the Policy Schedule",
+          "note": "co-payment only as an optional cover"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 14,
+          "quote": "The Insured Person shall bear on his/her own account an amount equal to the opted deductible specified in the Policy Schedule",
+          "note": "deductible only as an optional cover"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 15,
+          "quote": "Expenses related to the treatment of any Illness within 30 days from the first Policy Commencement Date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 15,
+          "quote": "and its direct complications shall be excluded until the expiry of 36 months of continuous coverage"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 15,
+          "quote": "shall be excluded until the expiry of 24 months of continuous coverage after the date of inception of the first Policy with Us"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 16,
+          "quote": "Maternity (Code-Excl 18 Medical treatment expenses traceable to child-birth"
+        },
+        "pre_hosp_days": {
+          "value": "options:30|60",
+          "page": 10,
+          "quote": "We will pay Medical Expenses incurred during the 30 days or 60 days (as specified in policy Schedule) immediately before Your Hospitalization"
+        },
+        "post_hosp_days": {
+          "value": "options:60|90|180",
+          "page": 10,
+          "quote": "We will pay Medical Expenses incurred up to 60 days, 90 days or 180 days (as specified in Policy Schedule) from the date of Your discharge from Hospital"
+        },
+        "cataract": {
+          "value": "options:amount:50000|amount:100000",
+          "page": 10,
+          "quote": "We will pay Medical Expenses of Rs 50,000/- or Rs 1,00,000/- incurred for treatment of Cataract as specified in the Policy Schedule, per eye"
+        },
+        "restoration": {
+          "value": "not_stated"
+        },
+        "ncb": {
+          "value": "15,max:100",
+          "page": 13,
+          "quote": "We will pay 15% of Basic Sum Insured under expiring Policy as Cumulative Bonus",
+          "note": "for claim-free years; capped at 100% of basic sum insured; a no-claim discount can be chosen instead"
+        },
+        "ambulance": {
+          "value": "options:amount:3000|amount:5000|amount:7000",
+          "page": 11,
+          "quote": "We will pay for expenses incurred up to Rs. 3,000/- or Rs. 5,000/- or Rs. 7,000/- as specified in Policy Schedule, on Road Ambulance Services"
+        },
+        "modern_treatments": {
+          "value": "percent_si:25",
+          "page": 10,
+          "quote": "up to 25% of Sum Insured as specified in the Policy Schedule, incurred on Advance Procedures"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 11,
+          "quote": "on Your Hospitalization in Hospital or AYUSH Hospital or AYUSH Day Care Centre for following Alternative Treatments prescribed by Medical Practitioner"
+        }
+      }
+    }
+  ]
+}
