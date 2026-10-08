@@ -197,8 +197,10 @@ async def simulate_bill(req: SimulateRequest):
     try:
         bill = Bill(**{k: v for k, v in req.bill.items() if k in BILL_FIELDS})
         c = req.calc
-        terms = Terms(req.sum_insured, c.get("room"), c.get("icu"), float(c.get("copay") or 0), c.get("copay_senior"),
-                      req.age, float(c.get("deductible") or 0), c.get("cataract"))
+        def number(v):
+            return None if v is None else float(v)
+        terms = Terms(req.sum_insured, c.get("room"), c.get("icu"), number(c.get("copay")), c.get("copay_senior"),
+                      req.age, number(c.get("deductible")), c.get("cataract"))
         r = simulate(bill, terms)
     except (TypeError, ValueError) as e:
         raise HTTPException(422, f"Check the bill amounts: {e}")

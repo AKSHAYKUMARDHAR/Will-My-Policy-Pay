@@ -48,9 +48,10 @@ def calc_terms(terms: dict) -> dict:
         return t.value if t.status == "shown" else None
     copay = shown("copay")
     deductible = shown("deductible")
-    return {"room": shown("room_rent"), "icu": shown("icu"), "copay": float(copay) if copay and not copay.startswith("options") else 0.0,
-            "copay_senior": shown("copay_senior"), "deductible": float(deductible) if deductible and not deductible.startswith("options") else 0.0,
-            "cataract": shown("cataract")}
+    def number(v):
+        return float(v) if v and not v.startswith("options") else None
+    return {"room": shown("room_rent"), "icu": shown("icu"), "copay": number(copay),
+            "copay_senior": shown("copay_senior"), "deductible": number(deductible), "cataract": shown("cataract")}
 
 
 def build_card(ex: Extraction, *, sum_insured: int, age: int, meta: dict | None = None) -> dict:

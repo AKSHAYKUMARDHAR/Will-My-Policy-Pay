@@ -44,10 +44,10 @@ class Terms:
     sum_insured: float
     room: str | None = None         # canonical values from terms.py; None = not found in the document
     icu: str | None = None
-    copay: float = 0
+    copay: float | None = 0         # None = not confirmed: treated as none, with a caveat
     copay_senior: str | None = None
     age: int = 40
-    deductible: float = 0
+    deductible: float | None = 0
     cataract: str | None = None
 
 
@@ -183,6 +183,10 @@ def simulate(bill: Bill, t: Terms, _compare: bool = True) -> Result:
         elif t.cataract is None:
             caveats.append("No cataract limit was found in the document; check your schedule for one.")
     # 6. deductible, co-payment, sum insured
+    if t.deductible is None:
+        caveats.append("No deductible was confirmed from the document, so this assumes there is none. Check your policy schedule.")
+    if t.copay is None:
+        caveats.append("No co-payment was confirmed from the document, so this assumes there is none. Check your policy schedule.")
     if t.deductible:
         d = min(t.deductible, admissible)
         adjustments.append(("Deductible", d, f"You pay the first {inr(t.deductible)}"))

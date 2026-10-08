@@ -79,3 +79,11 @@ def test_room_limit_saving_and_reasons():
 def test_unknown_room_limit_is_flagged():
     r = simulate(Bill(days=2, room_rate=5000, doctor_ot=10000), Terms(L5, None, None))
     assert any("wasn't found" in c for c in r.caveats)
+
+
+def test_unconfirmed_copay_and_deductible_are_assumed_none_and_said():
+    bill = Bill(days=4, room_rate=4000, doctor_ot=20000, medicines=10000)
+    known = simulate(bill, Terms(L5, "percent_si:1", "percent_si:2"))
+    unknown = simulate(bill, Terms(L5, "percent_si:1", "percent_si:2", copay=None, deductible=None))
+    assert unknown.insurer == known.insurer and not known.caveats
+    assert any("co-payment" in c for c in unknown.caveats) and any("deductible" in c for c in unknown.caveats)
