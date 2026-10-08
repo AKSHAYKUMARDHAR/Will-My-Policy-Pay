@@ -16,6 +16,8 @@ WHY_CHECK = {
     "quote_not_found": "We couldn't find the supporting words in the document.",
     "number_not_in_quote": "The words we found don't contain this number.",
     "words_not_in_quote": "The words we found don't clearly say this.",
+    "exemption_not_none": "The words we found exempt some people (by age or city zone) rather than say there is none for everyone.",
+    "shared_ceiling": "The words we found set one overall limit for several covers, not a limit for this one.",
     "malformed": "We couldn't read this term reliably.",
     "no_answer": "We couldn't read this term.",
     "document_flagged": "This document contains text aimed at AI tools, so nothing is shown without your own check.",

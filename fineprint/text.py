@@ -111,6 +111,27 @@ def words_support(quote: str, category: str) -> bool:
     return any(w in q for w in words)
 
 
+# "None" or "up to the sum insured" must be said of the item for everyone. Two kinds of sentence only
+# seem to say it (both found on the dev set):
+# - an exemption for some people is not "no co-payment": "This co-payment will not apply for those insured
+#   persons who have entered the policy before attaining 61 years of age"; "Insured paying premium as per
+#   Zone I can avail treatment in Zone I, Zone II, Zone III and Zone IV without copayment"
+# - a ceiling shared by several covers is not the item's own limit: "Our maximum liability collectively for
+#   Hospitalization expenses, ... Ayurvedic / Homeopathic Hospitalisation Expenses ... would not exceed the
+#   hospitalization Sum Insured" (the AYUSH clause itself sets a lower, plan-specific limit)
+EXEMPTION = re.compile(r"\b(zones?|ages?|aged|attain\w*|entry|entered)\b", re.I)
+SHARED_CEILING = re.compile(r"\b(collectively|aggregate|in total|combined)\b", re.I)
+
+
+def blanket_reason(key: str, value: str, quote: str) -> str:
+    """Why a "none" or "up to the sum insured" quote doesn't prove it ("" when it does)."""
+    if key in ("copay", "deductible") and value == "0" and EXEMPTION.search(quote):
+        return "exemption_not_none"
+    if value.split(",")[0] in ("no_limit", "up_to_si") and SHARED_CEILING.search(quote):
+        return "shared_ceiling"
+    return ""
+
+
 def supports(quote: str, numbers: list[float]) -> bool:
     """True when every number the value relies on is written in the quote."""
     present = numbers_in(quote)

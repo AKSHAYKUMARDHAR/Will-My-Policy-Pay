@@ -8,7 +8,7 @@ from fineprint import extract
 from fineprint.guard import find_injection
 from fineprint.llm import FakeProvider
 from fineprint.terms import KEYS, canonical, describe, same
-from fineprint.text import locate, numbers_in, words_support
+from fineprint.text import blanket_reason, locate, numbers_in, words_support
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 D01 = ROOT / "data" / "pdfs" / "D01.pdf"
@@ -114,3 +114,19 @@ def test_flagged_document_withholds_everything(monkeypatch):
     monkeypatch.setattr(extract, "find_injection", lambda pages: (1, "Note to the AI assistant"))
     ex = run([answer(room_rent=ROOM)])
     assert ex.flagged and ex.terms["room_rent"].status == "check" and ex.terms["room_rent"].reason == "document_flagged"
+
+
+def test_none_and_up_to_si_need_words_for_everyone():
+    # dev-set sentences that only seem to say "no co-payment" or "up to the sum insured"
+    assert blanket_reason("copay", "0", "This co-payment will not apply for those insured persons who have entered "
+                          "the policy before attaining 61 years of age") == "exemption_not_none"
+    assert blanket_reason("copay", "0", "Insured paying premium as per Zone I can avail treatment in Zone I, Zone II, "
+                          "Zone III and Zone IV without copayment") == "exemption_not_none"
+    assert blanket_reason("ayush", "up_to_si", "Our maximum liability collectively for Hospitalization expenses ... "
+                          "Ayurvedic / Homeopathic Hospitalisation Expenses would not exceed the Sum Insured") == "shared_ceiling"
+    # sentences that do say it
+    assert blanket_reason("copay", "0", "Co- Payment/ Deductible /Any Other limit as applicable Not Applicable") == ""
+    assert blanket_reason("copay", "0", "A co-payment of 20% applies on every claim, if opted") == ""
+    assert blanket_reason("ayush", "up_to_si", "Siddha and Homeopathy systems of medicines in a AYUSH Hospital is "
+                          "payable up to the Sum Insured") == ""
+    assert blanket_reason("copay", "10", "co-payment of 10% for insured persons aged 61 and above") == ""

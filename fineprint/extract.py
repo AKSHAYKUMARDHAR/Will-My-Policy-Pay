@@ -16,7 +16,7 @@ from .guard import find_injection
 from .llm import LLMError, Provider, QuotaExhausted
 from .prompts import user_message
 from .terms import KEYS, canonical, same, value_numbers
-from .text import compact, is_scanned, locate, numbers_in, pdf_pages, supports, words_support
+from .text import blanket_reason, compact, is_scanned, locate, numbers_in, pdf_pages, supports, words_support
 
 
 @dataclass
@@ -26,7 +26,7 @@ class TermResult:
     value: str | None = None          # canonical value when shown
     quote: str = ""
     page: int | None = None
-    reason: str = ""                  # why "check": reads_disagree | quote_not_found | number_not_in_quote | words_not_in_quote | malformed | no_answer | document_flagged
+    reason: str = ""                  # why "check": reads_disagree | quote_not_found | number_not_in_quote | words_not_in_quote | exemption_not_none | shared_ceiling | malformed | no_answer | document_flagged
     candidates: list = field(default_factory=list)   # [(canonical, quote, page)] from each read, for "check"
 
 
@@ -47,7 +47,7 @@ class UnreadableDocument(Exception):
     """No text layer: quotes could not be checked, so nothing would be shown."""
 
 
-def _verify(value: str, quote: str, cited, pages: list[str]) -> tuple[int | None, str]:
+def _verify(key: str, value: str, quote: str, cited, pages: list[str]) -> tuple[int | None, str]:
     page = locate(quote, pages, cited if isinstance(cited, int) else None)
     if page is None:
         return None, "quote_not_found"
@@ -64,6 +64,8 @@ def _verify(value: str, quote: str, cited, pages: list[str]) -> tuple[int | None
     category = value.split(",")[0]
     if not words_support(quote, category):
         return None, "words_not_in_quote"
+    if reason := blanket_reason(key, value, quote):
+        return None, reason
     return page, ""
 
 
@@ -80,7 +82,7 @@ def merge(key: str, reads: list[dict], pages: list[str]) -> TermResult:
         return TermResult(key, "check", reason="reads_disagree", candidates=answers)
     reason = ""
     for value, quote, cited in answers:
-        page, reason = _verify(value, quote, cited, pages)
+        page, reason = _verify(key, value, quote, cited, pages)
         if page:
             return TermResult(key, "shown", value=values[0], quote=quote, page=page)
     return TermResult(key, "check", reason=reason, candidates=answers)

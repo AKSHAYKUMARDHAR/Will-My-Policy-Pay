@@ -1,0 +1,25 @@
+  D01: 12 shown, 2 reads, 6,336 in / 8,893 out tokens
+  D02: 9 shown, 2 reads, 34,072 in / 11,971 out tokens
+  D03: 9 shown, 2 reads, 35,136 in / 13,193 out tokens
+  D04: 11 shown, 2 reads, 28,752 in / 13,031 out tokens
+  D05: 13 shown, 2 reads, 54,288 in / 12,930 out tokens
+
+dev: 5/5 documents, model gemini-3.5-flash, prompt v3-41c58ae8
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                  85 |       76      0         9 |     89.4     0.0
+2 reads, no check       85 |       80      3         2 |     94.1     3.5
+2 reads + check         85 |       77      0         8 |     90.6     0.0
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 5/0/0  icu: 5/0/0  copay: 3/0/2  copay_senior: 5/0/0  deductible: 5/0/0  initial_waiting_days: 5/0/0  ped_waiting_months: 5/0/0  specific_waiting_months: 4/0/1  maternity: 5/0/0  pre_hosp_days: 5/0/0  post_hosp_days: 5/0/0  cataract: 5/0/0  restoration: 5/0/0  ncb: 5/0/0  ambulance: 2/0/3  modern_treatments: 5/0/0  ayush: 3/0/2
+why withheld: {'number_not_in_quote': 1, 'shared_ceiling': 2, 'exemption_not_none': 2, 'quote_not_found': 1}
+
+Withheld facts:
+  D02.specific_waiting_months [number_not_in_quote] label '12,24': '12,24' p10 | '12,24' p10
+  D02.ambulance [shared_ceiling] label 'up_to_si': 'up_to_si' p2 | 'up_to_si' p2
+  D02.ayush [shared_ceiling] label 'not_stated': 'up_to_si' p4 | 'up_to_si' p4
+  D03.ayush [] label 'up_to_si': 
+  D04.copay [exemption_not_none] label 'not_stated': '0' p14 | '0' p14
+  D04.ambulance [quote_not_found] label 'amount:2500': 'amount:2500' p20 | 'amount:2500' p20
+  D05.copay [exemption_not_none] label 'not_stated': '0' p39 | '0' p39
+  D05.ambulance [] label 'up_to_si': 

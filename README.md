@@ -8,7 +8,7 @@ pay and why.
 
 - Live: https://will-my-policy-pay.onrender.com
 - Product requirements: [docs/PRD.md](docs/PRD.md)
-- Status: built; the held-out release run is scheduled after the dev confirmation run (see Results).
+- Status: built and live; the configuration is frozen and the held-out release run is next (see Results).
 
 Built with Claude Code, after my [UPI Triage Agent](https://github.com/AKSHAYKUMARDHAR/UPI-Triage-Agent)
 and [Is This a Scam?](https://github.com/AKSHAYKUMARDHAR/Is-This-A-Scam). This time the evaluation
@@ -76,6 +76,8 @@ runs on **real, public policy documents**, not test data I wrote.
 | v2, 2 reads + checks (4 of 5 documents) | gemini-3.5-flash | 91% | 1.5% | 7% |
 | v2, 2 reads + checks | gemini-3.1-flash-lite | 75% | 7.1% | 18% |
 | v3, 2 reads + checks | gemini-3.5-flash-lite | 80% | 8.2% | 12% |
+| v3, 2 reads + checks | gemini-3.5-flash | 92% | 3.5% | 5% |
+| **v3 + exemption and shared-ceiling checks (frozen)** | gemini-3.5-flash | **91%** | **0%** | 9% |
 
 What the dev runs showed:
 
@@ -85,6 +87,14 @@ What the dev runs showed:
 - **A summary that lists a benefit doesn't state its limit.** The worst early error called ambulance
   cover "up to your sum insured" from a line that only said "Expenses incurred towards Ambulance".
   A "no limit" answer now needs words that say so.
+- **"None" has to be said of everyone.** Version 3 on all 5 documents showed 3 wrong facts. Two read
+  "no co-payment" from sentences that only exempt some people ("will not apply for those insured persons
+  who have entered the policy before attaining 61 years of age"; "Insured paying premium as per Zone I
+  can avail treatment in ... Zone IV without copayment"). One took a ceiling shared by several covers
+  ("Our maximum liability collectively for ... would not exceed the hospitalization Sum Insured") as
+  AYUSH's own limit, when the AYUSH clause sets a lower one. Two code checks now send such quotes to
+  "check this yourself": all 3 wrong facts and 1 correct one (Bajaj's ambulance cover rests on the
+  same shared ceiling). Re-scored from the same cached answers, with no new model calls.
 - **The lite models aren't good enough here.** Both read "up to 1% of SI or actual, whichever is
   lower" as a menu of two options, and called a premium discount a bonus. The extraction uses
   gemini-3.5-flash, whose free tier allows 20 requests a day.
@@ -93,7 +103,8 @@ What the dev runs showed:
 
 ### Held-out set (9 documents, 152 facts): the release run
 
-Pending: runs once on the frozen configuration after the version 3 confirmation run on dev.
+Pending: runs once on the frozen configuration (prompt v3, gemini-3.5-flash, two reads, every check
+above), from 9 October 2026.
 
 ## Run it locally
 
