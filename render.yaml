@@ -1,0 +1,16 @@
+# One-click deploy on Render's free plan. Use a SEPARATE Render workspace from the scam checker:
+# free instance hours (750 a month) are per workspace, and the scam checker stays awake all month.
+services:
+  - type: web
+    name: will-my-policy-pay
+    runtime: docker
+    plan: free
+    region: singapore          # closest Render region to India
+    healthCheckPath: /healthz
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false            # Render asks for this value when you deploy (a key from its own Google project)
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: STATS_TOKEN
+        generateValue: true
