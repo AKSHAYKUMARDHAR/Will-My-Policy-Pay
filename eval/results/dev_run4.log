@@ -1,0 +1,36 @@
+  D01: 12 shown, 2 reads, 6,336 in / 1,709 out tokens
+  D02: 11 shown, 2 reads, 34,072 in / 2,922 out tokens
+  D03: 7 shown, 2 reads, 35,136 in / 2,100 out tokens
+  D04: 13 shown, 2 reads, 28,752 in / 2,697 out tokens
+  D05: 13 shown, 2 reads, 54,288 in / 2,848 out tokens
+
+dev: 5/5 documents, model gemini-3.5-flash-lite, prompt v3-41c58ae8
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                  85 |       69      9         7 |     81.2    10.6
+2 reads, no check       85 |       73      7         5 |     85.9     8.2
+2 reads + check         85 |       68      7        10 |     80.0     8.2
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 4/1/0  icu: 3/0/2  copay: 2/2/1  copay_senior: 5/0/0  deductible: 4/0/1  initial_waiting_days: 5/0/0  ped_waiting_months: 5/0/0  specific_waiting_months: 4/0/1  maternity: 4/0/1  pre_hosp_days: 5/0/0  post_hosp_days: 4/0/1  cataract: 3/2/0  restoration: 5/0/0  ncb: 4/1/0  ambulance: 3/0/2  modern_treatments: 5/0/0  ayush: 3/1/1
+why withheld: {'reads_disagree': 5, 'number_not_in_quote': 1, 'words_not_in_quote': 3, 'quote_not_found': 1}
+
+Wrong facts shown:
+  D01.cataract: shown 'amount:75000', label 'options:amount:100000|amount:75000', p2: 'Cataract: Our liability for any claim of Cataract shall not exceed Rs. 75,000 for Plan A and Rs. 1,00,000 for '
+  D02.ayush: shown 'up_to_si', label 'not_stated', p3: 'If You are Hospitalised for not less than 24 hrs, in an Ayurvedic / Homeopathic Hospital on the advice of a Do'
+  D04.room_rent: shown 'options:no_limit|percent_si:1', label 'percent_si:1', p20: 'Room - Up to 1% of SI or actual, whichever is lower ... The limit shall not apply if the treatment is undergon'
+  D04.copay: shown '0', label 'not_stated', p14: 'If treatment is undergone in a non-network provider in a city/ town/ village where the Company/ TPA does not h'
+  D04.cataract: shown 'options:amount:60000|no_limit|percent_si:15', label 'percent_si:15,cap:60000', p20: 'Up to 15% of SI or INR 60,000 whichever is lower ... The limit shall not apply if the treatment is undergone f'
+  D04.ncb: shown '5,max:5', label 'not_stated', p5: 'On renewal of policies with a term of one year, a NCD of flat 5% shall be allowed on the * base premium, provi'
+  D05.copay: shown '0', label 'not_stated', p3: 'Co-payment: Co-payment means a cost-sharing requirement under a health insurance policy that provides that the'
+
+Withheld facts:
+  D01.ambulance [reads_disagree] label 'not_stated': 'not_stated' pNone | 'up_to_si' p1
+  D02.specific_waiting_months [number_not_in_quote] label '12,24': '12,24' p10 | '12,24' p10
+  D03.copay [reads_disagree] label 'not_stated': '0' p23 | 'not_stated' pNone
+  D03.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p15 | 'not_covered' p15
+  D03.post_hosp_days [quote_not_found] label '90': '90' p8 | '90' p8
+  D03.ayush [words_not_in_quote] label 'up_to_si': 'up_to_si' p8 | 'up_to_si' p8
+  D04.icu [reads_disagree] label 'percent_si:2': 'options:no_limit|percent_si:2' p20 | 'percent_si:2' p20
+  D05.icu [words_not_in_quote] label 'no_limit': 'no_limit' p9 | 'no_limit' p9
+  D05.deductible [reads_disagree] label 'not_stated': 'not_stated' pNone | '0' p1
+  D05.ambulance [reads_disagree] label 'up_to_si': 'up_to_si' p11 | 'amount:250000' p11

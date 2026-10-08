@@ -1,0 +1,40 @@
+  D01: 8 shown, 2 reads, 6,128 in / 1,653 out tokens
+  D02: 9 shown, 2 reads, 33,864 in / 1,808 out tokens
+  D03: 7 shown, 2 reads, 34,928 in / 1,953 out tokens
+  D04: 12 shown, 2 reads, 28,544 in / 2,316 out tokens
+  D05: 13 shown, 2 reads, 54,080 in / 2,507 out tokens
+
+dev: 5/5 documents, model gemini-3.1-flash-lite, prompt v2-b011b82d
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                  85 |       61     10        14 |     71.8    11.8
+2 reads, no check       85 |       69      6        10 |     81.2     7.1
+2 reads + check         85 |       64      6        15 |     75.3     7.1
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 3/1/1  icu: 2/1/2  copay: 3/0/2  copay_senior: 5/0/0  deductible: 3/0/2  initial_waiting_days: 5/0/0  ped_waiting_months: 5/0/0  specific_waiting_months: 4/1/0  maternity: 3/0/2  pre_hosp_days: 5/0/0  post_hosp_days: 4/0/1  cataract: 2/1/2  restoration: 5/0/0  ncb: 4/1/0  ambulance: 3/0/2  modern_treatments: 5/0/0  ayush: 3/1/1
+why withheld: {'reads_disagree': 6, 'words_not_in_quote': 3, 'quote_not_found': 2, 'malformed': 1}
+
+Wrong facts shown:
+  D02.specific_waiting_months: shown '24', label '12,24', p10: 'We will also not pay for claims arising out of or howsoever connected to the following for the first year of H'
+  D02.ayush: shown 'up_to_si', label 'not_stated', p2: 'Our maximum liability collectively for ... Ayurvedic / Homeopathic Hospitalisation Expenses(Section A12) would'
+  D04.room_rent: shown 'options:no_limit|percent_si:1', label 'percent_si:1', p20: 'Room - Up to 1% of SI or actual, whichever is lower'
+  D04.icu: shown 'options:no_limit|percent_si:2', label 'percent_si:2', p20: 'ICU – Up to 2% of SI or actual, whichever is lower'
+  D04.cataract: shown 'options:amount:60000|percent_si:15', label 'percent_si:15,cap:60000', p20: 'Up to 15% of SI or INR 60,000 whichever is lower'
+  D04.ncb: shown '5,max:5', label 'not_stated', p5: 'On renewal of policies with a term of one year, a NCD of flat 5% shall be allowed on the * base premium... Agg'
+
+Withheld facts:
+  D01.copay [reads_disagree] label '0': 'not_stated' pNone | '0' p2
+  D01.deductible [reads_disagree] label '0': 'not_stated' pNone | '0' p2
+  D01.maternity [reads_disagree] label 'covered': 'covered,waiting:0' p1 | 'covered' p1
+  D01.cataract [reads_disagree] label 'options:amount:100000|amount:75000': 'amount:75000' p2 | 'options:amount:100000|amount:75000' p2
+  D02.room_rent [] label 'no_limit': 
+  D02.icu [] label 'no_limit': 
+  D02.ambulance [] label 'up_to_si': 
+  D03.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p15 | 'not_covered' p15
+  D03.post_hosp_days [quote_not_found] label '90': '90' p8 | '90' p7
+  D03.ayush [words_not_in_quote] label 'up_to_si': 'up_to_si' p8 | 'up_to_si' p8
+  D04.copay [reads_disagree] label 'not_stated': '0' p14 | 'not_stated' pNone
+  D04.deductible [reads_disagree] label 'not_stated': '0' p14 | 'not_stated' pNone
+  D04.ambulance [quote_not_found] label 'amount:2500': 'amount:2500' p20 | 'amount:2500' p20
+  D05.icu [words_not_in_quote] label 'no_limit': 'no_limit' p9 | 'no_limit' p9
+  D05.cataract [malformed] label 'not_stated': 'not_stated' pNone | None p32

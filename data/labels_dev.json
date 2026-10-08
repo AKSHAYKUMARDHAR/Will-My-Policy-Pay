@@ -153,7 +153,10 @@
           "quote": "100% of the hospitalization Sum Insured specified under Part I- Hospitalisation expenses (section A1) will be reinstated"
         },
         "ncb": {
-          "value": "not_stated"
+          "value": "10,max:50",
+          "page": 22,
+          "quote": "We will increase the Limit of Indemnity by 10% per annum",
+          "note": "corrected after dev run 1: the labeller missed this clause; maximum 5 years and/or 50% of sum insured"
         },
         "ambulance": {
           "value": "up_to_si",
