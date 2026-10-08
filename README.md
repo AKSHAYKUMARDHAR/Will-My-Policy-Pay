@@ -114,6 +114,19 @@ python -m eval.run_eval dev --offline                    # re-score the dev set 
 python -m scripts.build_catalogue                        # ready-made cards from cached answers
 ```
 
+## Deploy
+
+The Docker image serves the app on `$PORT` (default 8000) and needs one secret, `GEMINI_API_KEY`,
+ideally from its own Google project so the free daily requests aren't shared.
+
+- **Render**: [render.yaml](render.yaml) is a one-click blueprint. Use a workspace of its own: free
+  instance hours (750 a month) are counted per workspace.
+- **Hugging Face Spaces**: create a Docker Space, add `app_port: 8000` to the Space's README front
+  matter, push this repo to it and add `GEMINI_API_KEY` as a secret.
+
+The ready-made cards ship in the image (`data/catalogue.json`), so they work with no API key; only
+uploads call Gemini.
+
 ## API
 
 | Method | Path | What it does |
