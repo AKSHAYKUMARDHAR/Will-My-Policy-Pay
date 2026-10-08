@@ -1,0 +1,11 @@
+.venv
+.env
+__pycache__
+*.pyc
+data/pdfs
+data/logs
+eval
+tests
+docs
+scripts
+.git

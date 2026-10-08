@@ -1,0 +1,11 @@
+# Python 3.12
+fastapi
+uvicorn[standard]
+python-multipart        # PDF uploads
+python-dotenv
+google-genai>=2.26      # Gemini reads the PDF (free tier)
+pypdf                   # page text for quote checks
+fonttools               # better text extraction for some insurer fonts
+httpx
+pytest
+markdown                # renders docs/PRD.md to docs/PRD.html

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Will My Policy Pay?</title>
+  <meta name="description" content="Your health insurance fine print in plain English, before you need it: every limit quoted from your insurer's own document, and what a hospital bill would actually pay.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="/">Will My Policy Pay?</a>
+      <nav aria-label="Sections">
+        <a href="#check">Check a policy</a>
+        <a href="#simulate">Bill simulator</a>
+        <a href="#cut">If a claim is cut</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Your health policy's fine print, in plain English, before you need it.</h1>
+      <p class="lead">Room-rent limits, co-payments, sub-limits and waiting periods decide what a claim actually pays. See yours, with the exact words and page from your insurer's own document, then see what a hospital bill would pay.</p>
+      <p class="assure">Nothing here sells insurance or recommends a policy. Every number is quoted from the document; if we can't prove it, we say so.</p>
+    </section>
+
+    <section id="check" class="panel" aria-labelledby="check-h">
+      <h2 id="check-h">1. Check a policy</h2>
+      <div class="choose">
+        <div class="col">
+          <h3>Pick a policy we've already read</h3>
+          <div id="catalogue" class="catalogue" aria-live="polite"><p class="muted">Loading…</p></div>
+        </div>
+        <form id="upload" class="col upload" enctype="multipart/form-data">
+          <h3>Or upload your policy</h3>
+          <p class="muted small">The policy wording or customer information sheet, as a PDF from your insurer. It's read and thrown away; nothing is stored.</p>
+          <label for="file">Policy PDF</label>
+          <input id="file" name="file" type="file" accept="application/pdf" required>
+          <div class="row2">
+            <div><label for="si">Sum insured</label>
+              <select id="si" name="sum_insured">
+                <option value="300000">₹3 lakh</option><option value="500000" selected>₹5 lakh</option><option value="750000">₹7.5 lakh</option>
+                <option value="1000000">₹10 lakh</option><option value="1500000">₹15 lakh</option><option value="2000000">₹20 lakh</option>
+                <option value="2500000">₹25 lakh</option><option value="5000000">₹50 lakh</option><option value="10000000">₹1 crore</option>
+              </select></div>
+            <div><label for="age">Age of the eldest member</label><input id="age" name="age" type="number" min="0" max="100" value="40"></div>
+          </div>
+          <button class="btn" type="submit" id="upload-btn">Read my policy</button>
+          <p id="upload-status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div id="card" class="card-wrap" hidden></div>
+    </section>
+
+    <section id="simulate" class="panel" aria-labelledby="sim-h">
+      <h2 id="sim-h">2. What would this bill pay?</h2>
+      <p class="muted" id="sim-policy">Open a policy above first; the simulator uses its limits.</p>
+      <div class="presets" id="presets" role="group" aria-label="Example stays"></div>
+      <form id="bill" class="bill-form">
+        <fieldset><legend>Room and ICU</legend>
+          <label>Days in a room <input name="days" type="number" min="0" value="5"></label>
+          <label>Room rent a day (₹) <input name="room_rate" type="number" min="0" value="8000"></label>
+          <label id="cat-wrap" hidden>A single private room at this hospital costs (₹ a day) <input name="category_rate" type="number" min="0" value="6000"></label>
+          <label>Days in ICU <input name="icu_days" type="number" min="0" value="0"></label>
+          <label>ICU a day (₹) <input name="icu_rate" type="number" min="0" value="15000"></label>
+        </fieldset>
+        <fieldset><legend>The rest of the bill (₹)</legend>
+          <label>Doctor, surgeon and OT charges <input name="doctor_ot" type="number" min="0" value="120000"></label>
+          <label>Medicines and consumables <input name="medicines" type="number" min="0" value="60000"></label>
+          <label>Diagnostics and tests <input name="diagnostics" type="number" min="0" value="20000"></label>
+          <label>Implants and devices <input name="implants" type="number" min="0" value="100000"></label>
+          <label>Non-medical items <input name="non_medical" type="number" min="0" value="6000"></label>
+          <label>Before admission and after discharge <input name="pre_post" type="number" min="0" value="0"></label>
+        </fieldset>
+        <fieldset class="opts"><legend>About the stay</legend>
+          <label class="check"><input name="differential_billing" type="checkbox" checked> The hospital charges doctor and OT fees by room category (most do)</label>
+          <label class="check"><input name="cataract" type="checkbox"> This is cataract surgery
+            <select name="eyes" aria-label="Eyes"><option value="1">one eye</option><option value="2">both eyes</option></select></label>
+        </fieldset>
+        <button class="btn" type="submit">Calculate</button>
+      </form>
+      <div id="result" class="result" hidden aria-live="polite"></div>
+    </section>
+
+    <section id="cut" class="panel" aria-labelledby="cut-h">
+      <h2 id="cut-h">3. If your claim is cut</h2>
+      <p>About 41% of the health complaints the Insurance Ombudsman decided in 2024-25 ended in the policyholder's favour or in a settlement. Challenging a deduction is worth it when a rule was broken.</p>
+      <ol class="steps">
+        <li><strong>Ask for the reasons in writing.</strong> When a claim is cut, the insurer must explain each deduction with the policy clause it relies on (IRDAI Master Circular on Health Insurance, 29 May 2024, para 17b).</li>
+        <li><strong>Write to the insurer's Grievance Redressal Officer.</strong> Their email is on your policy and the insurer's website. Attach the bill, the deduction sheet and the clause you rely on. Keep the acknowledgement.</li>
+        <li><strong>Escalate on Bima Bharosa</strong> (bimabharosa.irdai.gov.in), IRDAI's grievance portal, if the reply doesn't resolve it.</li>
+        <li><strong>Go to the Insurance Ombudsman</strong> (cioins.co.in) if the insurer rejects your complaint or doesn't reply within a month. It's free, for claims up to ₹50 lakh, and you have a year from the insurer's reply.</li>
+      </ol>
+      <h3>Rules that often decide a dispute</h3>
+      <ul class="rules">
+        <li>A proportionate deduction for a costlier room can't touch medicines and consumables, implants, diagnostics or ICU charges, and can't be applied by hospitals that don't price by room category (IRDAI/HLT/REG/CIR/151/06/2020).</li>
+        <li>After 60 months of continuous cover, a claim can't be rejected for non-disclosure, except for proven fraud (Master Circular 2024, para 13).</li>
+        <li>Final authorisation for discharge is due within 3 hours of the hospital's request; charges from a longer delay are the insurer's (para 16).</li>
+        <li>Items IRDAI lists as non-medical (gloves, attendant food, toiletries) are not payable unless you have a consumables cover, so those deductions are usually correct.</li>
+      </ul>
+      <details class="letter">
+        <summary>Write a letter to the Grievance Redressal Officer</summary>
+        <form id="letter" class="letter-form">
+          <div class="row3">
+            <label>Your name <input name="name" required></label>
+            <label>Policy number <input name="policy" required></label>
+            <label>Claim number <input name="claim" required></label>
+          </div>
+          <div class="row3">
+            <label>Insurer <input name="insurer" required></label>
+            <label>Amount deducted (₹) <input name="amount" type="number" min="0" required></label>
+            <label>Reason they gave <input name="reason" required></label>
+          </div>
+          <label>Why it's wrong (the rule or clause) <textarea name="grounds" rows="3" required>The deduction applies a proportionate deduction to medicines, implants and diagnostics, which IRDAI circular IRDAI/HLT/REG/CIR/151/06/2020 does not allow.</textarea></label>
+          <button class="btn" type="submit">Write the letter</button>
+        </form>
+        <div id="letter-out" hidden>
+          <pre id="letter-text"></pre>
+          <button class="btn ghost" id="copy-letter" type="button">Copy the letter</button>
+          <p class="muted small" id="copy-status" role="status"></p>
+        </div>
+      </details>
+    </section>
+
+    <footer class="foot">
+      <p><strong>The policy document decides; this explains it.</strong> Check with your insurer before you rely on any figure here. This is not insurance advice and recommends no policy.</p>
+      <p class="muted small">Readings are made by Google Gemini and kept only when two independent reads agree and the quoted words are found on the cited page. <a href="https://github.com/AKSHAYKUMARDHAR/Will-My-Policy-Pay" target="_blank" rel="noopener">How it works and how accurate it is</a>.</p>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
