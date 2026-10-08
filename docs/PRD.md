@@ -166,7 +166,7 @@ Three weeks, 8 to 29 October 2026: week 1 collects and freezes documents and lab
 | Plan variants and riders make values conditional | Extract conditional rows; v1 covers the base plan; unclear cases show "check yourself" |
 | Insurers revise documents | Manifest pins product UIN and SHA-256; the catalogue shows the document version and date |
 | Scanned PDFs | Detect missing text and say so; photos are v2 |
-| Free model tier (500 requests a day per project) | Catalogue extracted once and cached; uploads cached by document hash |
+| Free model tier: the model accurate enough (gemini-3.5-flash; the lite models failed on dev) allows 20 requests a day | Catalogue read once and cached; uploads cached by document hash; about 10 uploads a day, with a clear message and the catalogue when the day's capacity is used; a paid key removes the limit |
 | Legal exposure | Explain, never recommend; cite everything; disclaimer on every card |
 | Free hosting hours are shared with my scam checker | Host without always-on, or on a second free host |
 
