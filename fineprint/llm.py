@@ -87,8 +87,10 @@ class GeminiProvider(Provider):
                 return _parse(resp.text), usage
             except errors.APIError as e:
                 details = (getattr(e, "details", None) or {}).get("error", {}).get("details", [])
-                if any("PerDay" in v.get("quotaId", "") for d in details for v in d.get("violations", [])):
-                    raise QuotaExhausted(f"Gemini daily quota exhausted for {self.model}") from e
+                day = [v for d in details for v in d.get("violations", []) if "PerDay" in v.get("quotaId", "")]
+                if day:
+                    raise QuotaExhausted(f"Gemini daily quota exhausted for {self.model}: "
+                                         f"{day[0].get('quotaId')}, limit {day[0].get('quotaValue', '?')}") from e
                 if getattr(e, "code", None) not in (429, 500, 502, 503, 504) or attempt == MAX_RETRIES:
                     raise LLMError(f"Gemini {getattr(e, 'code', '?')}: {str(e)[:200]}") from e
             except LLMError:

@@ -77,6 +77,7 @@ def test_upload_quota_message(client):
     main.provider = FakeProvider([QuotaExhausted("daily")])
     r = c.post("/api/upload", files={"file": ("p.pdf", D01.read_bytes(), "application/pdf")}, data={"sum_insured": "750000", "age": "40"})
     assert r.status_code == 503 and "tomorrow" in r.json()["detail"]
+    assert c.get("/healthz").json()["last_quota_refusal"]["error"] == "daily"
 
 
 def test_feedback_and_stats(client):

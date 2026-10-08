@@ -22,6 +22,7 @@ import time
 import uuid
 from collections import OrderedDict, defaultdict
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 
 import httpx
 from fastapi import FastAPI, File, Form, Header, HTTPException, Request, UploadFile
@@ -116,6 +117,7 @@ catalogue = load_catalogue()
 events = Events(config.LOG_PATH)
 limiter = RateLimiter(config.RATE_LIMIT_PER_HOUR)
 cards = CardCache()
+quota_note: dict = {}   # the last daily-quota refusal from Gemini
 
 
 def client_ip(request: Request) -> str:
@@ -166,7 +168,9 @@ async def upload(request: Request, file: UploadFile = File(...), sum_insured: in
             ex = await run_extraction(data, provider, sum_insured=sum_insured, age=age)
         except UnreadableDocument as e:
             raise HTTPException(422, str(e) + " Try the policy's text PDF from the insurer's website.")
-        except QuotaExhausted:
+        except QuotaExhausted as e:
+            # Shown at /healthz, so a used-up (or zero) daily limit can be told apart without the host's logs
+            quota_note.update(at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"), error=str(e))
             raise HTTPException(503, "Today's free reading capacity is used up. Please try again tomorrow, or open a policy from the list.")
         if ex.pages > config.MAX_PDF_PAGES:
             raise HTTPException(413, "That document is too long to read here.")
@@ -245,7 +249,7 @@ async def stats(x_stats_token: str | None = Header(None)):
 async def healthz():
     return {"ok": True, "model": getattr(provider, "model", None), "catalogue": len(catalogue),
             "commit": os.getenv("RENDER_GIT_COMMIT", "")[:7] or None,
-            "keep_awake": bool(config.KEEP_AWAKE_URL)}
+            "keep_awake": bool(config.KEEP_AWAKE_URL), "last_quota_refusal": quota_note or None}
 
 
 @app.get("/")
