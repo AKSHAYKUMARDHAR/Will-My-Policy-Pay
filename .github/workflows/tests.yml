@@ -10,5 +10,10 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       # Insurer sites sometimes block cloud runners; tests that need the PDFs skip without them.
-      - run: python -m scripts.fetch_documents || true
+      - name: Fetch the policy PDFs (best effort)
+        run: python -m scripts.fetch_documents || true
+        timeout-minutes: 5
+        continue-on-error: true
+        env:
+          FETCH_TIMEOUT: "20"
       - run: python -m pytest -q

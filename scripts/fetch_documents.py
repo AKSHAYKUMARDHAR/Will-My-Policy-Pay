@@ -10,6 +10,7 @@ eval results apply to the hashed version only.
 import argparse
 import hashlib
 import json
+import os
 import pathlib
 import sys
 
@@ -38,7 +39,7 @@ def save(manifest: dict) -> None:
 def fetch(doc: dict) -> pathlib.Path:
     path = PDFS / f"{doc['id']}.pdf"
     if not path.exists():
-        r = httpx.get(doc["url"], follow_redirects=True, timeout=120, headers=UA)
+        r = httpx.get(doc["url"], follow_redirects=True, timeout=float(os.getenv("FETCH_TIMEOUT", "120")), headers=UA)
         r.raise_for_status()
         if not r.content.startswith(b"%PDF"):
             raise ValueError(f"{doc['id']}: the URL did not return a PDF")
