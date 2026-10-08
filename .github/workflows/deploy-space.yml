@@ -1,0 +1,38 @@
+name: deploy to Hugging Face Spaces
+on:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - requirements.txt
+      - fineprint/**
+      - api/**
+      - web/**
+      - data/catalogue.json
+      - data/documents.json
+      - scripts/deploy_space.py
+      - .github/workflows/deploy-space.yml
+  workflow_dispatch:
+concurrency:
+  group: deploy-space
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_SPACE: ${{ vars.HF_SPACE }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt huggingface_hub
+      # Tests that need the insurer PDFs skip here; the full run is in tests.yml
+      - run: python -m pytest -q
+      - name: No token yet
+        if: env.HF_TOKEN == ''
+        run: echo "::notice::Add a Hugging Face write token as the HF_TOKEN repository secret to deploy."
+      - name: Upload to the Space
+        if: env.HF_TOKEN != ''
+        run: python -m scripts.deploy_space

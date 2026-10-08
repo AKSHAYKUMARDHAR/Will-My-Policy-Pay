@@ -244,7 +244,7 @@ async def stats(x_stats_token: str | None = Header(None)):
 @app.get("/healthz")
 async def healthz():
     return {"ok": True, "model": getattr(provider, "model", None), "catalogue": len(catalogue),
-            "commit": os.getenv("RENDER_GIT_COMMIT", "")[:7] or None}
+            "commit": (os.getenv("RENDER_GIT_COMMIT") or os.getenv("GIT_COMMIT", ""))[:7] or None}
 
 
 @app.get("/")

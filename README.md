@@ -119,13 +119,18 @@ python -m scripts.build_catalogue                        # ready-made cards from
 The Docker image serves the app on `$PORT` (default 8000) and needs one secret, `GEMINI_API_KEY`,
 ideally from its own Google project so the free daily requests aren't shared.
 
+- **Hugging Face Spaces** (the live app): [.github/workflows/deploy-space.yml](.github/workflows/deploy-space.yml)
+  runs the tests and then [scripts/deploy_space.py](scripts/deploy_space.py) on every push to `main`
+  that changes the app. The script creates the Docker Space if needed (`<user>/will-my-policy-pay`, or
+  the `HF_SPACE` repository variable) and uploads only what the image needs, with a README holding
+  the Space settings (`sdk: docker`, `app_port: 8000`). Setup: a Hugging Face write token as the
+  `HF_TOKEN` repository secret, then `GEMINI_API_KEY` as a secret in the Space's settings.
+  `python -m scripts.deploy_space --dry-run` lists what would be uploaded.
 - **Render**: [render.yaml](render.yaml) is a one-click blueprint. Use a workspace of its own: free
   instance hours (750 a month) are counted per workspace.
-- **Hugging Face Spaces**: create a Docker Space, add `app_port: 8000` to the Space's README front
-  matter, push this repo to it and add `GEMINI_API_KEY` as a secret.
 
 The ready-made cards ship in the image (`data/catalogue.json`), so they work with no API key; only
-uploads call Gemini.
+uploads call Gemini. `/healthz` reports the deployed commit.
 
 ## API
 
@@ -155,7 +160,7 @@ api/        FastAPI app
 web/        index.html, styles.css, app.js (English only)
 data/       documents.json (frozen manifest), labels_dev.json, labels_holdout.json, LABEL_GUIDE.md, catalogue.json
 eval/       run_eval.py, check_labels.py, cache/ (model answers), results/
-scripts/    fetch_documents.py, build_catalogue.py, render_prd.py
+scripts/    fetch_documents.py, build_catalogue.py, render_prd.py, deploy_space.py
 tests/      calculator (25 hand-worked bills), extraction safeguards, API
 docs/       PRD.md and PRD.html
 ```
