@@ -39,7 +39,7 @@
   $("#upload").addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = $("#upload-btn"), status = $("#upload-status");
-    btn.disabled = true; status.className = "status"; status.textContent = "Reading your policy twice and checking every quote. This takes about a minute.";
+    btn.disabled = true; status.className = "status"; status.textContent = "Reading your policy twice and checking every quote. This takes one to two minutes.";
     try {
       const card = await api("/api/upload", { method: "POST", body: new FormData(e.target) });
       $$(".pick").forEach((b) => b.setAttribute("aria-pressed", "false"));
