@@ -1,0 +1,783 @@
+{
+  "note": "Answer key for release run 2 (holdout2). Written from the documents alone on 2026-10-09 under the v2 label guide (data/LABEL_GUIDE.md), before any model read these documents. Never edited after a run.",
+  "documents": [
+    {
+      "id": "N01",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "a modular policy: limits, waiting periods and most covers are 'as opted by You and specified in the Policy Schedule'; the base plan is taken as Section 1.B (Accidental & Illness Hospitalization) with its mandatory in-built covers"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated",
+          "note": "'subject to a Limit Per Day as opted by You and mentioned in Your Policy Schedule'"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 10,
+          "quote": "ICU Intensive Care Unit Professional Fees",
+          "note": "listed among the hospitalisation benefits payable up to the sum insured, with no cap of its own (rule 1)"
+        },
+        "copay": {
+          "value": "not_stated",
+          "note": "covers are 'subject to ... deductible, co-payment' as in the schedule"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated",
+          "note": "a deductible applies as per the schedule"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 34,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "not_stated",
+          "note": "'number of months, as opted by You and specified in the Policy Schedule'"
+        },
+        "specific_waiting_months": {
+          "value": "not_stated",
+          "note": "'number of months, as opted by You and specified in the Policy Schedule'"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 36,
+          "quote": "Maternity: Code Excl18 i. Medical treatment expenses traceable to childbirth",
+          "note": "covered only under the optional Section 7"
+        },
+        "pre_hosp_days": {
+          "value": "not_stated",
+          "note": "'the number of days as opted by You and mentioned in Your Policy Schedule'"
+        },
+        "post_hosp_days": {
+          "value": "not_stated",
+          "note": "'the number of days as opted by You and mentioned in Your Policy Schedule'"
+        },
+        "cataract": {
+          "value": "not_stated"
+        },
+        "restoration": {
+          "value": "not_stated",
+          "note": "the Sum Insured Refill (Section 10) is an optional cover"
+        },
+        "ncb": {
+          "value": "not_stated",
+          "note": "'as mentioned in Your Policy Schedule'"
+        },
+        "ambulance": {
+          "value": "not_stated",
+          "note": "'restricted to the amount as mentioned in Your Policy Schedule'"
+        },
+        "modern_treatments": {
+          "value": "percent_si:50",
+          "page": 38,
+          "quote": "in a hospital up to 50% of Sum Insured opted under Section 1.A"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 13,
+          "quote": "taken under Ayurveda, Unani, Siddha or Homeopathy. This is up to the Sum Insured mentioned in Your Policy Schedule",
+          "note": "Section 4 is a mandatory in-built cover"
+        }
+      }
+    },
+    {
+      "id": "N02",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the wording lists no sum insured options; its limits change at ₹3 lakh, so ₹5 lakh is on the upper band"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "no_limit",
+          "page": 11,
+          "quote": "Sub limit per day for normal Room expenses for (i) Sum Insured less than 3 Lakh : 1.0% of Basic Sum Insured. (ii) Sum Insured 3 La kh and above: As per Actuals"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 11,
+          "quote": "Sub limit per day for Intensive Care/Therapeutic Unit expenses for (i) Sum Insured less than 3 Lakh : 2.5% of Basic Sum Insured. (ii) Sum Insured 3 Lakh and above: As per Actuals"
+        },
+        "copay": {
+          "value": "not_stated",
+          "note": "only package charges outside the Preferred Provider Network are restricted to 80%, which the assumptions exclude"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 11,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 11,
+          "quote": "shall be excluded until the expiry of 36 months of continuous coverage after the date of inception of the first policy with us"
+        },
+        "specific_waiting_months": {
+          "value": "12",
+          "page": 12,
+          "quote": "shall be excluded until the expiry of 12 months of continuous coverage"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 14,
+          "quote": "Maternity Expenses (Code - Excl 18)"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 13,
+          "quote": "Pre -Hospitalization and Post Hospitalization expenses for 60 days respectively"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 13,
+          "quote": "Pre -Hospitalization and Post Hospitalization expenses for 60 days respectively"
+        },
+        "cataract": {
+          "value": "not_stated"
+        },
+        "restoration": {
+          "value": "not_stated",
+          "note": "reinstatement is bought at the time of a claim ('he may opt for the same'), not part of the base cover"
+        },
+        "ncb": {
+          "value": "5,max:50",
+          "page": 13,
+          "quote": "The Basic Sum Insured under the Policy shall be increased by 5% of the Basic Sum Insured at each renewal in respect of each claim free year of insurance, subject to maximum of 50%"
+        },
+        "ambulance": {
+          "value": "percent_si:1,cap:1500",
+          "page": 12,
+          "quote": "Ambulance charges in connection with any admissible claim limited to 1.0% of the Basic Sum Insured or Rupees 1500/ - whichever is less for each claim"
+        },
+        "modern_treatments": {
+          "value": "percent_si:50",
+          "page": 17,
+          "quote": "as part of day care treatment in a hospital upto 50% of Sum Insured"
+        },
+        "ayush": {
+          "value": "percent_si:10",
+          "page": 12,
+          "quote": "AYUSH hospitalization expenses including Pre - Hospitalization and Post Hospitalization expenses shall be limited to 10% of the Basic Sum Insured"
+        }
+      }
+    },
+    {
+      "id": "N03",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the CIS lists no sum insured options"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated",
+          "note": "'restricted to the limit mentioned in the policy'; the CIS gives no limit"
+        },
+        "icu": {
+          "value": "not_stated",
+          "note": "'restricted to the limit mentioned in the policy'; the CIS gives no limit"
+        },
+        "copay": {
+          "value": "not_stated",
+          "note": "only a 20% co-payment in non-network hospitals, which the assumptions exclude"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 2,
+          "quote": "Any disease contracted within the first thirty (30) days from the inception of the policy shall not be payable"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 2,
+          "quote": "Pre-Existing Diseases will be covered after a waiting period of thirty six (36) months of continuous coverage"
+        },
+        "specific_waiting_months": {
+          "value": "3,12,24,48",
+          "page": 2,
+          "quote": "Specified surgeries/treatments/diseases are covered after specific waiting period of 90 days/ one year/ two year/ four years"
+        },
+        "maternity": {
+          "value": "not_stated",
+          "note": "listed among covers that 'depend on the plan opted'; no waiting period given"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 1,
+          "quote": "Expenses incurred 30 (thirty) days immediately be fore hospitalisation for the same condition"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 1,
+          "quote": "Expenses incurred 60 (sixty) days immediately after discharge from hospital"
+        },
+        "cataract": {
+          "value": "not_stated",
+          "note": "'restricted to the limit mentioned in the policy'; the CIS gives no limit"
+        },
+        "restoration": {
+          "value": "not_stated"
+        },
+        "ncb": {
+          "value": "5,max:50",
+          "page": 2,
+          "quote": "Cumulative bonus shall be aggregated over the years and available, subject to maximum of 50% of the sum insured",
+          "note": "5% a claim-free year, on the same page"
+        },
+        "ambulance": {
+          "value": "not_stated",
+          "note": "listed among covers that depend on the plan; no limit given"
+        },
+        "modern_treatments": {
+          "value": "not_stated",
+          "note": "listed among covers that depend on the plan; no limit given"
+        },
+        "ayush": {
+          "value": "not_stated",
+          "note": "'Ayurveda and homeopathy' listed among covers that depend on the plan; no limit given"
+        }
+      }
+    },
+    {
+      "id": "N04",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the wording lists no sum insured options (they are in the schedule)"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated",
+          "note": "the in-patient clause doesn't name room rent; a room-rent cap exists only as an optional extension (HC 12)"
+        },
+        "icu": {
+          "value": "not_stated"
+        },
+        "copay": {
+          "value": "not_stated"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "not_stated"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 5,
+          "quote": "Any Illness contracted or Medical Expenses incurred in respect of an Illness will not be covered during the first 30 days from the Policy Period Start Date"
+        },
+        "ped_waiting_months": {
+          "value": "48",
+          "page": 4,
+          "quote": "Any Pre-Existing Disease will not be covered until 48 months of continuous coverage has elapsed for the Insured Person"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 5,
+          "quote": "2 Year Waiting Period Any Medical Expenses incurred on the treatment of any of the following illnesses"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 5,
+          "quote": "Any expenses incurred on treatment arising from or traceable to pregnancy (including voluntary termination of pregnancy, childbirth",
+          "note": "maternity is only an optional extension (HC 7)"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 4,
+          "quote": "We will not be liable to pay Pre-Hospitalisation Medical Expenses for more than 30 days preceding the Insured Person's Admission to Hospital"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 4,
+          "quote": "We will not be liable to pay Post-Hospitalisation Medical Expenses for more than 60 days immediately following the Insured Person's discharge from Hospital"
+        },
+        "cataract": {
+          "value": "amount:20000",
+          "page": 5,
+          "quote": "Our maximum liability for any Claim for an Insured Person's cataract treatment shall not exceed INR 20,000 per eye"
+        },
+        "restoration": {
+          "value": "not_stated",
+          "note": "restoration is only an optional extension (HC 10), in force only if the schedule says so"
+        },
+        "ncb": {
+          "value": "10,max:50",
+          "page": 4,
+          "quote": "We will increase Your Base Annual Sum Insured by 10% at the end of the Policy Year if the Policy is renewed with Us",
+          "note": "'will not accrue in excess of 50% of the Base Annual Sum Insured', same section"
+        },
+        "ambulance": {
+          "value": "not_stated",
+          "note": "'up to the limit specified in the Policy Schedule'"
+        },
+        "modern_treatments": {
+          "value": "not_stated"
+        },
+        "ayush": {
+          "value": "not_covered",
+          "page": 5,
+          "quote": "Non- allopathic treatment; unless covered under extension",
+          "note": "alternative treatment is only an optional extension (HC 5)"
+        }
+      }
+    },
+    {
+      "id": "N05",
+      "assumed": {
+        "sum_insured": 1000000,
+        "note": "the smallest sum insured offered is ₹10 lakh (p1), in the Essential and Optimum plans; Optimum Plus starts at ₹75 lakh"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated",
+          "note": "the CIS never mentions room rent; it says only that 'Sub-limit is not applicable for this product'"
+        },
+        "icu": {
+          "value": "not_stated",
+          "note": "the CIS never mentions ICU charges"
+        },
+        "copay": {
+          "value": "0",
+          "page": 15,
+          "quote": "Co-Payment - The Policy is without any Co-pay"
+        },
+        "copay_senior": {
+          "value": "not_stated",
+          "note": "no co-payment of any kind ('without any Co-pay')"
+        },
+        "deductible": {
+          "value": "not_stated",
+          "note": "the only deductible is the first 48 hours of the hospital daily cash benefit, not an amount"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 13,
+          "quote": "Initial waiting Period: 30 days for all illnesses (not applicable on renewal or for accidents)"
+        },
+        "ped_waiting_months": {
+          "value": "skip",
+          "note": "'36 months or 24 months ... as per the Plan mentioned in the Policy schedule' (p10): plan-dependent, not a menu the term can express"
+        },
+        "specific_waiting_months": {
+          "value": "3,12",
+          "page": 13,
+          "quote": "Specific waiting Period: 12 months for specific illness and treatments (as listed below)",
+          "note": "plus 90 days for listed critical illnesses requiring hospitalisation (standard exclusion 4, p10); maternity, laser eye surgery, infertility and obesity waits belong to those benefits"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 5,
+          "quote": "Maternity & Child Care ( Separate limits under each cover, only available in Family floater policies)",
+          "note": "the assumed insured has individual cover"
+        },
+        "pre_hosp_days": {
+          "value": "options:60|90",
+          "page": 2,
+          "quote": "Medical expenses incurred prior to the covered Hospitalization up to the specified days 60 Days 90 Days 90 Days",
+          "note": "Essential 60, Optimum 90"
+        },
+        "post_hosp_days": {
+          "value": "options:90|120",
+          "page": 2,
+          "quote": "Medical expenses incurred after the covered Hospitalization up to the specified days 90 Days 120 Days 180 Days",
+          "note": "Essential 90, Optimum 120 (Optimum Plus 180 starts at ₹75 lakh)"
+        },
+        "cataract": {
+          "value": "not_stated",
+          "note": "no cataract limit; 'Sub-limit is not applicable for this product'"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 4,
+          "quote": "Restoration of Sum Insured 100% restoration of basic SI on occurrence of another unrelated event"
+        },
+        "ncb": {
+          "value": "10,max:100",
+          "page": 7,
+          "quote": "Auto increase in Sum Insured for every claim free year up to max. of 100% of Basic Sum Insured",
+          "note": "10% of basic SI a claim-free year (same row), or a 2.25% renewal discount instead"
+        },
+        "ambulance": {
+          "value": "options:amount:2500|amount:5000",
+          "page": 3,
+          "quote": "Covered up to the mentioned limits per hospitalization as part of Basic SI ₹ 2500 ₹ 5000 ₹ 8000",
+          "note": "Essential ₹2,500, Optimum ₹5,000"
+        },
+        "modern_treatments": {
+          "value": "not_stated"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 4,
+          "quote": "Ayurveda, Yoga and Naturopathy, Unani, Siddha and Homeopathy systems. Upto Basic SI"
+        }
+      }
+    },
+    {
+      "id": "N06",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered in all three plans (p3); Signature, Elite and Premier plans, chosen by the buyer"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "skip",
+          "note": "plan-dependent: Signature and Elite up to a deluxe room (no canonical value); Premier 1% of SI up to ₹7,500"
+        },
+        "icu": {
+          "value": "not_stated",
+          "note": "'ICU including Digital ICU' describes facilities, not a limit"
+        },
+        "copay": {
+          "value": "0",
+          "page": 2,
+          "quote": "Delivery Expenses No co-payment",
+          "note": "'No co-payment' is one of the policy features listed for all plans"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 3,
+          "quote": "Up to 45% discount available in the premium by choosing deductible option",
+          "note": "deductibles are optional, for a discount (rule 2)"
+        },
+        "initial_waiting_days": {
+          "value": "not_stated"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 8,
+          "quote": "Pre-Existing Disease (PED) waiting period can be reduced from 36 months to either 24 months or 12 months",
+          "note": "the reduction is an optional cover; the base wait is 36 months"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 3,
+          "quote": "Specified disease from 24 months to 18 months",
+          "note": "the reduction applies only to a 3-year Signature policy; the base wait is 24 months"
+        },
+        "maternity": {
+          "value": "skip",
+          "note": "Signature covers delivery up to ₹2 lakh with no waiting period stated; Elite and Premier don't mention it"
+        },
+        "pre_hosp_days": {
+          "value": "options:30|60|90",
+          "page": 6,
+          "quote": "Pre & Post Hospitalization 60 days and 90 days respectively",
+          "note": "Signature 90, Elite 60, Premier 30 days (pages 4, 6, 7)"
+        },
+        "post_hosp_days": {
+          "value": "options:60|90|180",
+          "page": 4,
+          "quote": "Pre & Post Hospitalization 90 days and 180 days respectively",
+          "note": "Signature 180, Elite 90, Premier 60 days (pages 4, 6, 7)"
+        },
+        "cataract": {
+          "value": "skip",
+          "note": "plan-dependent: Signature up to the sum insured (no canonical value), Elite ₹60,000, Premier ₹35,000 at ₹5 lakh"
+        },
+        "restoration": {
+          "value": "skip",
+          "note": "Signature unlimited, Elite 100% for different diseases; the Premier plan page doesn't mention it"
+        },
+        "ncb": {
+          "value": "skip",
+          "note": "plan-dependent: Signature 100% then 25% to 500%; Elite 50% then 25% to 150%; Premier 25% then 10% to 100%"
+        },
+        "ambulance": {
+          "value": "options:amount:10000|amount:5000|up_to_si",
+          "page": 6,
+          "quote": "Road Ambulance Covered maximum up to Rs.10,000/-",
+          "note": "Signature up to the sum insured, Elite ₹10,000, Premier ₹5,000 (pages 5, 6, 7)"
+        },
+        "modern_treatments": {
+          "value": "skip",
+          "note": "Signature and Elite up to the sum insured; Premier 'Covered up to Sub-limits' that the brochure doesn't give"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 4,
+          "quote": "AYUSH Covered up to Sum Insured",
+          "note": "the same in all three plans (pages 4, 6, 7)"
+        }
+      }
+    },
+    {
+      "id": "N07",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered ('available for SI 5Lacs and above', p2); Silver, Gold and Platinum plans"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "options:percent_si:1|single_private_room",
+          "page": 4,
+          "quote": "Room Rent Limit ** Silver Plan 1% of SI per Day Gold & Platinum Plans ( SI ₹ 3 - ₹7.5L) Single Private AC room",
+          "note": "the plan opted picks one"
+        },
+        "icu": {
+          "value": "not_stated"
+        },
+        "copay": {
+          "value": "0",
+          "page": 4,
+          "quote": "Voluntary co-payment 10%/ 20% of admissible claim amount",
+          "note": "voluntary, so the base plan has none (rule 2); the zone co-payment is excluded by the assumptions"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 2,
+          "quote": "Annual Aggregate Deductible limit Rs.50000 /Rs.100000 /Rs.200000 /Rs.300000 opted",
+          "note": "voluntary, so the base plan has none (rule 2)"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 3,
+          "quote": "Initial Waiting period: 30 days for all illnesses"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 4,
+          "quote": "Pre-existing diseases waiting period: 36 months"
+        },
+        "specific_waiting_months": {
+          "value": "24",
+          "page": 3,
+          "quote": "Specific Waiting period: 24 months for below listed procedures"
+        },
+        "maternity": {
+          "value": "skip",
+          "note": "plan-dependent: not in Silver; Gold and Platinum after 72 months. Not a menu the term can express"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 1,
+          "quote": "Pre-Hospitalization- up to 60 days prior to date of admission in hospital"
+        },
+        "post_hosp_days": {
+          "value": "90",
+          "page": 1,
+          "quote": "Post-Hospitalization- up to 90 days from date of discharge from the hospital"
+        },
+        "cataract": {
+          "value": "percent_si:20,cap:100000",
+          "page": 4,
+          "quote": "Cataract Limit 20% of SI for each eye, max up to ₹1,00,000/-"
+        },
+        "restoration": {
+          "value": "100",
+          "page": 1,
+          "quote": "then the base Sum Insured will be restored one time"
+        },
+        "ncb": {
+          "value": "skip",
+          "note": "plan-dependent: Silver and Gold 10% a year up to 100%; Platinum 50% for 2 years then 10%, up to 150%"
+        },
+        "ambulance": {
+          "value": "amount:20000",
+          "page": 1,
+          "quote": "Road Ambulance- max. up to ₹ 20,000/- per Policy Year"
+        },
+        "modern_treatments": {
+          "value": "not_stated"
+        },
+        "ayush": {
+          "value": "not_stated",
+          "note": "named as a cover (Section C12) without a limit"
+        }
+      }
+    },
+    {
+      "id": "N08",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "₹5 lakh is offered in both sheets of this CIS: top-up option II (p1) and super top-up option I (p18), which agree on the terms labelled here"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "not_stated"
+        },
+        "icu": {
+          "value": "not_stated"
+        },
+        "copay": {
+          "value": "0",
+          "page": 25,
+          "quote": "Co-Payment is not applicable for this product"
+        },
+        "copay_senior": {
+          "value": "not_stated"
+        },
+        "deductible": {
+          "value": "skip",
+          "note": "a top-up: the buyer picks the deductible from a menu (₹2-5 lakh at this sum insured), which the term can't express"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 7,
+          "quote": "Expenses related to the treatment of any illness within 30 days from the first policy commencement date shall be excluded"
+        },
+        "ped_waiting_months": {
+          "value": "36",
+          "page": 7,
+          "quote": "Pre-existing Diseases will be covered after a waiting period of 36 months"
+        },
+        "specific_waiting_months": {
+          "value": "24,36",
+          "page": 7,
+          "quote": "Specified surgeries/treatments/diseases are covered after specific waiting period of 24 months. * Specified surgeries/treatments/diseases are covered after specific waiting period of 36 months"
+        },
+        "maternity": {
+          "value": "not_covered",
+          "page": 4,
+          "quote": "Refractive error Unproven Treatments Sterility and Infertility Maternity",
+          "note": "in the list of standard exclusions"
+        },
+        "pre_hosp_days": {
+          "value": "30",
+          "page": 2,
+          "quote": "Medical expenses incurred prior to the covered Hospitalizati on 30 Days 30 Days 60 days",
+          "note": "30 days in top-up option II and super top-up option I"
+        },
+        "post_hosp_days": {
+          "value": "60",
+          "page": 2,
+          "quote": "Medical expenses incurred after the covered Hospitalizati on 60 Days 60 Days 90 Days",
+          "note": "60 days in top-up option II and super top-up option I"
+        },
+        "cataract": {
+          "value": "not_stated",
+          "note": "'Sub-limit is not applicable for this product'"
+        },
+        "restoration": {
+          "value": "not_stated",
+          "note": "'Reload of Sum Insured' is an optional cover"
+        },
+        "ncb": {
+          "value": "skip",
+          "note": "NA in the top-up options; 10% a year up to 100% (or a discount) in the super top-up options"
+        },
+        "ambulance": {
+          "value": "not_stated"
+        },
+        "modern_treatments": {
+          "value": "not_stated"
+        },
+        "ayush": {
+          "value": "not_stated",
+          "note": "ticked as covered, with no limit given"
+        }
+      }
+    },
+    {
+      "id": "N09",
+      "assumed": {
+        "sum_insured": 500000,
+        "note": "the document lists no sum insured options (its premium illustration uses ₹3 lakh); no label here depends on the amount"
+      },
+      "labels": {
+        "room_rent": {
+          "value": "no_limit",
+          "page": 14,
+          "quote": "while the Insured was under inpatient care medical expenses incurred for: a. Room rent, boarding expenses",
+          "note": "named in the scope-of-cover clause with no cap but the sum insured (rule 1)"
+        },
+        "icu": {
+          "value": "no_limit",
+          "page": 14,
+          "quote": "(including consultation through telemedicine ) Intensive care unit",
+          "note": "named in the same scope-of-cover clause with no cap (rule 1)"
+        },
+        "copay": {
+          "value": "0",
+          "page": 2,
+          "quote": "Cost sharing No cost sharing"
+        },
+        "copay_senior": {
+          "value": "not_stated",
+          "note": "no cost sharing of any kind"
+        },
+        "deductible": {
+          "value": "0",
+          "page": 2,
+          "quote": "Cost sharing No cost sharing"
+        },
+        "initial_waiting_days": {
+          "value": "30",
+          "page": 1,
+          "quote": "Initial waiting period: 30 days for all illnesses (not applicable on renewal or for accidents)"
+        },
+        "ped_waiting_months": {
+          "value": "48",
+          "page": 2,
+          "quote": "Pre-existing diseases: Covered after 48 months unless otherwise provided"
+        },
+        "specific_waiting_months": {
+          "value": "3,12",
+          "page": 1,
+          "quote": "90 days for specified disease and procedures. 3. Specified surgeries/treatments/diseases are covered after specific waiting period of 12 months",
+          "note": "the 90 days covers hypertension, heart disease and diabetes (p19)"
+        },
+        "maternity": {
+          "value": "skip",
+          "note": "'covered but only under OPD section and up to OPD Limit' (p15), with no waiting period stated, which the term needs"
+        },
+        "pre_hosp_days": {
+          "value": "60",
+          "page": 14,
+          "quote": "the maximum amount that c an be claimed under th is head is limited to 60 days for each of the admitted hospitalisation"
+        },
+        "post_hosp_days": {
+          "value": "90",
+          "page": 14,
+          "quote": "the maximum amount t hat can be claimed under this head is lim ited to 90 days for each of the admitted hospitalisation"
+        },
+        "cataract": {
+          "value": "not_stated"
+        },
+        "restoration": {
+          "value": "not_stated"
+        },
+        "ncb": {
+          "value": "not_stated"
+        },
+        "ambulance": {
+          "value": "amount:1500",
+          "page": 14,
+          "quote": "Actual ambulance expenses or INR 1500 wh ichever is lower will be reimbursed"
+        },
+        "modern_treatments": {
+          "value": "percent_si:50",
+          "page": 1,
+          "quote": "12 Specific Procedures upto 50% of Sum Insured",
+          "note": "the 12 procedures listed on p17 are IRDAI's modern treatments"
+        },
+        "ayush": {
+          "value": "up_to_si",
+          "page": 15,
+          "quote": "Alternative treatment: - taken in a governme nt hospital or in any institute recogni zed by government",
+          "note": "named in the scope-of-cover clause with no cap but the sum insured (rule 1)"
+        }
+      }
+    }
+  ]
+}
