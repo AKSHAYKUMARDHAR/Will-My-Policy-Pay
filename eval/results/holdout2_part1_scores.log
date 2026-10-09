@@ -1,0 +1,31 @@
+  N02: 13 shown, 2 reads, 41,520 in / 12,087 out tokens
+  N03: 7 shown, 2 reads, 7,472 in / 10,680 out tokens
+  N04: 6 shown, 2 reads, 24,496 in / 11,101 out tokens
+  N05: 6 shown, 2 reads, 32,340 in / 20,226 out tokens
+
+holdout2: 4/4 documents, model gemini-3.5-flash, prompt v3-41c58ae8
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                  67 |       58      3         6 |     86.6     4.5
+2 reads, no check       67 |       60      3         4 |     89.6     4.5
+2 reads + check         67 |       54      3        10 |     80.6     4.5
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 3/0/1  icu: 3/0/1  copay: 3/1/0  copay_senior: 4/0/0  deductible: 4/0/0  initial_waiting_days: 4/0/0  ped_waiting_months: 3/0/0  specific_waiting_months: 2/1/1  maternity: 2/0/2  pre_hosp_days: 3/0/1  post_hosp_days: 3/0/1  cataract: 4/0/0  restoration: 3/1/0  ncb: 4/0/0  ambulance: 3/0/1  modern_treatments: 4/0/0  ayush: 2/0/2
+why withheld: {'number_not_in_quote': 1, 'words_not_in_quote': 4, 'reads_disagree': 2, 'malformed': 2, 'quote_not_found': 1}
+
+Wrong facts shown:
+  N02.restoration: shown '100', label 'not_stated', p21: 'After occurrence of a claim under the policy, the basic sum insured under the policy will be reinstated by the'
+  N03.copay: shown '0', label 'not_stated', p2: 'Claims under the policy, except claims under Vaccination for children, shall be subject to a co payment of 20%'
+  N05.specific_waiting_months: shown '12,24', label '3,12', p13: 'Specific waiting Period: 12 months for specific illness and treatments ... Specific waiting Period: 24 months '
+
+Withheld facts:
+  N04.specific_waiting_months [number_not_in_quote] label '24': '24' p5 | '24' p5
+  N04.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N04.ayush [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N05.room_rent [reads_disagree] label 'not_stated': 'not_stated' pNone | 'no_limit' p15
+  N05.icu [reads_disagree] label 'not_stated': 'not_stated' pNone | 'no_limit' p15
+  N05.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N05.pre_hosp_days [malformed] label 'options:60|90': 'options:60|90' p2 | None p2
+  N05.post_hosp_days [malformed] label 'options:90|120': 'options:90|120' p2 | None p2
+  N05.ambulance [quote_not_found] label 'options:amount:2500|amount:5000': 'options:amount:2500|amount:5000' p3 | 'options:amount:2500|amount:5000' p3
+  N05.ayush [words_not_in_quote] label 'up_to_si': 'up_to_si' p4 | 'up_to_si' p4

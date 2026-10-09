@@ -1,20 +1,3 @@
-{"doc": "N01", "term": "room_rent", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "icu", "label": "no_limit", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "copay", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "copay_senior", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "deductible", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "initial_waiting_days", "label": "30", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "ped_waiting_months", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "specific_waiting_months", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "maternity", "label": "not_covered", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "pre_hosp_days", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "post_hosp_days", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "cataract", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "restoration", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "ncb", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "ambulance", "label": "not_stated", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "modern_treatments", "label": "percent_si:50", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
-{"doc": "N01", "term": "ayush", "label": "up_to_si", "status": "check", "value": null, "reason": "no_answer", "score": "withheld", "page": null, "quote": ""}
 {"doc": "N02", "term": "room_rent", "label": "no_limit", "status": "shown", "value": "no_limit", "reason": "", "score": "correct", "page": 11, "quote": "(ii) Sum Insured 3 Lakh and above: As per Actuals"}
 {"doc": "N02", "term": "icu", "label": "no_limit", "status": "shown", "value": "no_limit", "reason": "", "score": "correct", "page": 11, "quote": "(ii) Sum Insured 3 Lakh and above: As per Actuals"}
 {"doc": "N02", "term": "copay", "label": "not_stated", "status": "not_found", "value": null, "reason": "", "score": "correct", "page": null, "quote": ""}

@@ -8,8 +8,9 @@ pay and why.
 
 - Live: https://will-my-policy-pay.onrender.com
 - Product requirements: [docs/PRD.md](docs/PRD.md)
-- Status: built and live. Release run 1 was blocked (3.3% of facts wrong against a 2% bar); on review,
-  3 of its 5 wrong facts were answer-key mistakes. Release run 2, on fresh documents, is next (see Results).
+- Status: built and live, **blocked twice by its own release gate**. Release run 1: 3.3% of facts wrong
+  (3 of its 5 were answer-key mistakes). Release run 2 on fresh documents: 3 real errors in the first 4
+  documents, against 2 allowed for the whole set (see Results).
 
 Built with Claude Code, after my [UPI Triage Agent](https://github.com/AKSHAYKUMARDHAR/UPI-Triage-Agent)
 and [Is This a Scam?](https://github.com/AKSHAYKUMARDHAR/Is-This-A-Scam). This time the evaluation
@@ -148,14 +149,42 @@ exclusions set for named illnesses. Both are logged in [data/LABEL_GUIDE.md](dat
 
 The one wrong fact is SBI's 15-day wait for COVID-19, which the model leaves out of the list.
 
-### Release run 2: 9 fresh documents (pending)
+### Release run 2: blocked again (first 4 of 9 fresh documents)
 
-Frozen before any labelling (`51ac132`): Go Digit, IFFCO Tokio, National (Mediclaim Plus), Kotak, Liberty
-(Health Prime Connect and the Health Connect Supra super top-up), Galaxy Health, Bajaj (Health Guard)
-and SBI (Arogya Plus); five of the insurers are new to the project. The answer key was written under the
-v2 rules before any model read them (`26e6d75`): 141 scored facts, 80 stated and 61 "not stated", with
-12 plan-dependent terms skipped. At 141 facts the 2% bar allows 2 wrong. It runs once on 10 October 2026,
-on the unchanged system.
+Nine fresh documents were frozen before any labelling (`51ac132`): Go Digit, IFFCO Tokio, National
+(Mediclaim Plus), Kotak, Liberty (Health Prime Connect and the Health Connect Supra super top-up), Galaxy
+Health, Bajaj (Health Guard) and SBI (Arogya Plus). The answer key was written under the v2 rules before
+any model read them (`26e6d75`): 141 scored facts, 80 stated and 61 "not stated", with 12 plan-dependent
+terms skipped, so the 2% bar allows 2 wrong. The system was unchanged since `499022c`.
+
+The run met an outage: both reads of the first document (Digit) got 503 "high demand" errors, and the
+retries counted against the free daily limit, which ran out after four documents. The harness now
+leaves a document the provider never served out of the scores, and caps retries; the other five
+documents are read on 10 October, and the four below keep their saved answers.
+
+| First 4 documents, 67 facts ([log](eval/results/holdout2_part1_scores.log)) | Correct | Wrong | Withheld |
+| --- | --- | --- | --- |
+| 1 read, no checks | 86.6% | 4.5% (3) | 9.0% |
+| 2 reads, no checks | 89.6% | 4.5% (3) | 6.0% |
+| **2 reads + checks (what ships)** | **80.6%** (54) | **4.5%** (3) | 14.9% (10) |
+
+**Release gate: blocked.** Three wrong facts already exceed the 2 allowed on 141, whatever the other five
+documents show. Unlike run 1, all three are real errors:
+
+- **A paid option read as a benefit.** IFFCO Tokio Individual Medishield: "Refill of cover" shown as 100%.
+  The policy's reinstatement is bought at the time of a claim ("he may opt for the same ... after charging
+  appropriate premium") and restores only the amount claimed.
+- **An exemption read as "none" again.** National Mediclaim Plus: co-payment shown as none, from a sentence
+  that sets a 20% co-payment only in non-network hospitals. It is the error the dev checks catch for age
+  and city zone; "non-network" is not in that check.
+- **A separate wait left out.** Liberty Health Prime Connect: the specific-illness waits shown as 12 and 24
+  months, without the 90-day wait for listed critical illnesses. The answer key has a mistake here too: it
+  missed the 24-month list on page 14 and says 3 and 12 months. The system is wrong either way, and the key
+  stays unchanged, as held-out keys do after a run.
+
+The withheld facts are the checks doing their job, at a cost: an exclusion quoted without the words
+that exclude ("Maternity" in a list of exclusions), and two "options" answers the second read didn't
+complete.
 
 ## Run it locally
 
