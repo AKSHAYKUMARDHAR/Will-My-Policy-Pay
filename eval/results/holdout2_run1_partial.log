@@ -1,0 +1,54 @@
+  N01: 0 shown, 0 reads, 0 in / 0 out tokens, errors ["Gemini 503: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILA", "Gemini 503: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILA"]
+  N02: 13 shown, 2 reads, 41,520 in / 12,087 out tokens
+  N03: 7 shown, 2 reads, 7,472 in / 10,680 out tokens
+  N04: 6 shown, 2 reads, 24,496 in / 11,101 out tokens
+  N05: 6 shown, 2 reads, 32,340 in / 20,226 out tokens
+  stopped: Gemini daily quota exhausted for gemini-3.5-flash: GenerateRequestsPerDayPerProjectPerModel-FreeTier, limit 20
+
+holdout2: 5/9 documents, model gemini-3.5-flash, prompt v3-41c58ae8  (INCOMPLETE: stopped on quota)
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                  84 |       58      3        23 |     69.0     3.6
+2 reads, no check       84 |       60      3        21 |     71.4     3.6
+2 reads + check         84 |       54      3        27 |     64.3     3.6
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 3/0/2  icu: 3/0/2  copay: 3/1/1  copay_senior: 4/0/1  deductible: 4/0/1  initial_waiting_days: 4/0/1  ped_waiting_months: 3/0/1  specific_waiting_months: 2/1/2  maternity: 2/0/3  pre_hosp_days: 3/0/2  post_hosp_days: 3/0/2  cataract: 4/0/1  restoration: 3/1/1  ncb: 4/0/1  ambulance: 3/0/2  modern_treatments: 4/0/1  ayush: 2/0/3
+why withheld: {'no_answer': 17, 'number_not_in_quote': 1, 'words_not_in_quote': 4, 'reads_disagree': 2, 'malformed': 2, 'quote_not_found': 1}
+
+Wrong facts shown:
+  N02.restoration: shown '100', label 'not_stated', p21: 'After occurrence of a claim under the policy, the basic sum insured under the policy will be reinstated by the'
+  N03.copay: shown '0', label 'not_stated', p2: 'Claims under the policy, except claims under Vaccination for children, shall be subject to a co payment of 20%'
+  N05.specific_waiting_months: shown '12,24', label '3,12', p13: 'Specific waiting Period: 12 months for specific illness and treatments ... Specific waiting Period: 24 months '
+
+Withheld facts:
+  N01.room_rent [no_answer] label 'not_stated': 
+  N01.icu [no_answer] label 'no_limit': 
+  N01.copay [no_answer] label 'not_stated': 
+  N01.copay_senior [no_answer] label 'not_stated': 
+  N01.deductible [no_answer] label 'not_stated': 
+  N01.initial_waiting_days [no_answer] label '30': 
+  N01.ped_waiting_months [no_answer] label 'not_stated': 
+  N01.specific_waiting_months [no_answer] label 'not_stated': 
+  N01.maternity [no_answer] label 'not_covered': 
+  N01.pre_hosp_days [no_answer] label 'not_stated': 
+  N01.post_hosp_days [no_answer] label 'not_stated': 
+  N01.cataract [no_answer] label 'not_stated': 
+  N01.restoration [no_answer] label 'not_stated': 
+  N01.ncb [no_answer] label 'not_stated': 
+  N01.ambulance [no_answer] label 'not_stated': 
+  N01.modern_treatments [no_answer] label 'percent_si:50': 
+  N01.ayush [no_answer] label 'up_to_si': 
+  N04.specific_waiting_months [number_not_in_quote] label '24': '24' p5 | '24' p5
+  N04.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N04.ayush [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N05.room_rent [reads_disagree] label 'not_stated': 'not_stated' pNone | 'no_limit' p15
+  N05.icu [reads_disagree] label 'not_stated': 'not_stated' pNone | 'no_limit' p15
+  N05.maternity [words_not_in_quote] label 'not_covered': 'not_covered' p5 | 'not_covered' p5
+  N05.pre_hosp_days [malformed] label 'options:60|90': 'options:60|90' p2 | None p2
+  N05.post_hosp_days [malformed] label 'options:90|120': 'options:90|120' p2 | None p2
+  N05.ambulance [quote_not_found] label 'options:amount:2500|amount:5000': 'options:amount:2500|amount:5000' p3 | 'options:amount:2500|amount:5000' p3
+  N05.ayush [words_not_in_quote] label 'up_to_si': 'up_to_si' p4 | 'up_to_si' p4
+
+Release gate (PRD):
+  [FAIL] Wrong facts shown <= 2% of labelled facts
+  [FAIL] Correct facts >= 85% of labelled facts

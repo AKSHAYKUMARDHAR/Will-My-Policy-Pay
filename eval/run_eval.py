@@ -139,6 +139,11 @@ def main(argv=None) -> int:
                 print(f"  stopped: {e}", file=sys.stderr)
                 stopped = True
                 break
+            if not ex.reads:
+                # The provider never answered (an outage, not a reading): leave the document out of the scores,
+                # so the run reports itself incomplete instead of counting an outage as withheld facts
+                print(f"  {doc['id']}: not read ({len(ex.errors)} provider errors), left out of the scores", file=sys.stderr, flush=True)
+                continue
             out[doc["id"]] = (ex, pdf_pages(pdf))
             print(f"  {doc['id']}: {sum(1 for t in ex.terms.values() if t.status == 'shown')} shown, "
                   f"{len(ex.reads)} reads, {ex.input_tokens:,} in / {ex.output_tokens:,} out tokens"
@@ -162,7 +167,7 @@ def main(argv=None) -> int:
                                        "quote": res.quote, "page": res.page, "candidates": res.candidates})
 
     print(f"\n{args.split}: {len(extractions)}/{len(docs)} documents, model {args.model}, prompt {PROMPT_VERSION}-{prompt_hash()}"
-          + ("  (INCOMPLETE: stopped on quota)" if stopped else ""))
+          + ("  (INCOMPLETE: stopped on quota)" if stopped else "  (INCOMPLETE)" if len(extractions) < len(docs) else ""))
     print(f"{'version':20} {'facts':>5} | {'correct':>8} {'wrong':>6} {'withheld':>9} | {'correct%':>8} {'wrong%':>7}")
     summary = {}
     for name, rows in versions.items():
