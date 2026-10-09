@@ -1,5 +1,5 @@
 {
-  "note": "Real, public Indian retail health insurance documents. Frozen 2026-10-08 before any extraction prompt was written. dev = used to build the extraction; holdout = labelled before any prompt exists and run once for the release gate. Dev and held-out share some insurers (New India, Star, Tata) but no product.",
+  "note": "Real, public Indian retail health insurance documents. Frozen 2026-10-08 before any extraction prompt was written. dev = used to build the extraction; holdout = labelled before any prompt exists and run once for the release gate. Dev and held-out share some insurers (New India, Star, Tata) but no product. holdout2 = the fresh set for release run 2, frozen 2026-10-09 after release run 1 and before any labelling; run once. Its insurers overlap the earlier sets only at National, Bajaj and SBI, with different products.",
   "documents": [
     {
       "id": "D01",
@@ -182,6 +182,125 @@
       "retrieved": "2026-10-08",
       "sha256": "564a77d69c2c85da6f2bf21e8ded1b501cfc2e79d7852b489ead6d8d9e06d0f2",
       "pages": 29
+    },
+    {
+      "id": "N01",
+      "split": "holdout2",
+      "insurer": "Go Digit General Insurance",
+      "product": "Digit Health Care Plus Policy",
+      "doc_type": "policy wording",
+      "uin": "GODHLIP21013V032223",
+      "source": "insurer",
+      "url": "https://www.godigit.com/content/dam/godigit/directportal/en/downloads/health/Policy%20Wordings%20-%20Digit%20Health%20Care%20Plus%20Policy.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "ab1fb71a03795e5be4905efd391daf6a69caf06715e5d6c7bcc3033f84a852c1",
+      "pages": 53
+    },
+    {
+      "id": "N02",
+      "split": "holdout2",
+      "insurer": "IFFCO Tokio General Insurance",
+      "product": "Individual Medishield Insurance Policy",
+      "doc_type": "policy wording",
+      "uin": "IFFHLIP21329V032021",
+      "source": "insurer",
+      "url": "https://www.iffcotokio.co.in/content/dam/iffcotokio/pdfs/Policy_Wording_IMI_2122.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "338989b0e0172500956c621738b2a2af6fafb925afdfb16b80a4c66355b001f0",
+      "pages": 36
+    },
+    {
+      "id": "N03",
+      "split": "holdout2",
+      "insurer": "National Insurance",
+      "product": "National Mediclaim Plus Policy",
+      "doc_type": "CIS",
+      "uin": "NICHLIP21150V022021",
+      "source": "partner bank",
+      "url": "https://www.bankofbaroda.com/-/media/Project/BOB/CountryWebsites/India/pdfs/nmpp-cis-09-13.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "41f3fdd940f5ac6a60a1dc13476e739e932c90230ba0328b25e2ce24528d96f5",
+      "pages": 4
+    },
+    {
+      "id": "N04",
+      "split": "holdout2",
+      "insurer": "Kotak Mahindra General Insurance",
+      "product": "Kotak Health Care",
+      "doc_type": "policy wording",
+      "uin": null,
+      "source": "insurer",
+      "url": "https://cms.zurichkotak.com/uploads/Kotak_Health_Care_Policy_Wording_16082017_93dc086c3d.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "1ade71793ec24979c0ae18a981719017df3e3fb746fa7aae6fe0c3cb62df561b",
+      "pages": 20,
+      "note": "A 2017 wording of a product since withdrawn; the document prints no UIN."
+    },
+    {
+      "id": "N05",
+      "split": "holdout2",
+      "insurer": "Liberty General Insurance",
+      "product": "Health Prime Connect",
+      "doc_type": "CIS",
+      "uin": "LIBHLIP25037V032425",
+      "source": "insurer",
+      "url": "https://www.libertyinsurance.in/Docx/Health%20Prime%20Connect%20-%20CIS%20(UIN%20-%20LIBHLIP25037V032425).pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "9eba02703d69601177b0247e8ecaf00074d951e65dabae217e4966fb89cf8dc9",
+      "pages": 28
+    },
+    {
+      "id": "N06",
+      "split": "holdout2",
+      "insurer": "Galaxy Health Insurance",
+      "product": "Galaxy Promise",
+      "doc_type": "brochure",
+      "uin": "GHIHLIP25035V012425",
+      "source": "insurer",
+      "url": "https://www.galaxyhealth.com/assets/preloaded/GALAXY%2520PROMISE.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "4996f9a8e6491c00f539495c9fe58c5cdc5d5903e0f75aa58d33b6dede5663f7",
+      "pages": 8
+    },
+    {
+      "id": "N07",
+      "split": "holdout2",
+      "insurer": "Bajaj General Insurance",
+      "product": "Health Guard",
+      "doc_type": "CIS",
+      "uin": "BAJHLIP26073V082526",
+      "source": "insurer",
+      "url": "https://www.bajajgeneralinsurance.com/download-documents/health-insurance/health-guard/Health-Guard-CIS-print.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "b1b03949cf9198b4ad6c1016df51267a00f3346e27c1fd2ef4c67ba43f13e53a",
+      "pages": 7
+    },
+    {
+      "id": "N08",
+      "split": "holdout2",
+      "insurer": "Liberty General Insurance",
+      "product": "Health Connect Supra",
+      "doc_type": "CIS",
+      "uin": "LIBHLIP25035V042425",
+      "source": "insurer",
+      "url": "https://www.libertyinsurance.in/Docx/Health%20Connect%20Supra_CIS_(UIN%20-%20LIBHLIP25035V042425).pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "90184859a82667808ac1467f0dd2e3ae9981af2f932b18bad673c62cea709031",
+      "pages": 37,
+      "note": "A super top-up: it pays above a deductible."
+    },
+    {
+      "id": "N09",
+      "split": "holdout2",
+      "insurer": "SBI General Insurance",
+      "product": "Arogya Plus Policy",
+      "doc_type": "policy wording",
+      "uin": "SBIHLIP22135V032122",
+      "source": "insurer",
+      "url": "https://content.sbigeneral.in/uploads/02ffac2e645e4e7894bb1fdd8ba60594.pdf",
+      "retrieved": "2026-10-09",
+      "sha256": "40b2a340ecbab242d4ae7189eadb1ced59c3612aa012b2cfac303281b6881a87",
+      "pages": 41
     }
   ]
 }
