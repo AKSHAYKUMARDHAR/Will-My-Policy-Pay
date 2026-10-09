@@ -45,7 +45,7 @@ Many terms depend on the plan, so every label answers for the same case:
 | `deductible` | `0`, `<₹>` | Base plan |
 | `initial_waiting_days` | `<days>` | For illness other than accidents |
 | `ped_waiting_months` | `<months>` | Pre-existing diseases |
-| `specific_waiting_months` | `<m>` or `<m1>,<m2>,...` | Every period the specific-illness clause lists, in months (90 days = 3), compared as a set |
+| `specific_waiting_months` | `<m>` or `<m1>,<m2>,...` | Every period of the specified disease/procedure clause (Excl02), plus any other waiting period the waiting-period or exclusions section sets for named illnesses (90 days for diabetes, hypertension or heart conditions; 15 days for COVID-19), in months (90 days = 3), compared as a set. Not the first 30 days, pre-existing diseases, or a wait that belongs to one benefit (maternity, vaccination, a critical-illness or bariatric benefit). Since v2; before, only the Excl02 clause |
 | `maternity` | `not_covered`, `covered,waiting:<months>` | In the base plan |
 | `pre_hosp_days`, `post_hosp_days` | `<days>` | |
 | `cataract` | `amount:<₹>`, `percent_si:<p>`, `percent_si:<p>,cap:<₹>` | Per eye where the document says so |
@@ -69,3 +69,22 @@ drops spaces or uses ligatures.
   This is the error that hurts, because a user would rely on it.
 - **Withheld**: the system says "not found" or "check this yourself" where the label has a value.
   Not wrong, but not useful either. Saying "not found" where the label is `not_stated` is correct.
+
+## Changes after a run
+
+Held-out labels never change after a run. When a held-out set has been run, its documents join the
+dev set, and changes to their dev copies are logged here; `labels_holdout.json` keeps the key the run
+was scored against.
+
+After release run 1 (9 October 2026), H01-H09 joined the dev set (`labels_dev.json`), with:
+
+- **v2 definition of `specific_waiting_months`** (see the table): a buyer with diabetes faces the
+  separate 90-day wait as surely as the Excl02 list. H06 `24` → `3,24`; H09 `24` → `0.5,3,24`.
+  The other 12 documents were checked against the new definition and keep their labels.
+- **H08 `deductible`** `not_stated` → `0`: the Aggregate Deductible "can be opted only at inception",
+  so rule 2 applies. A labelling mistake.
+- **H09 `restoration`** `not_stated` → `100`: Sum Insured Refill is item C.18 of the base covers.
+  A labelling miss.
+- **H08 `ayush`** `not_stated` → `up_to_si`: the plan table on page 61 gives every plan "Covered upto sum
+  insured" for AYUSH; the wording on page 7 leaves the sub-limit to the schedule, and the label had used
+  only the wording. A labelling miss.

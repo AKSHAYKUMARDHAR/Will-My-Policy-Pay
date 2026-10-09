@@ -2,6 +2,7 @@
 
     python -m eval.run_eval dev                      # build/tune on the dev documents (answers cached)
     python -m eval.run_eval holdout --gate           # the release run, once, on the frozen held-out set
+    python -m eval.run_eval holdout2 --gate          # release run 2, once, on a fresh held-out set
     python -m eval.run_eval dev --offline            # recompute from cached answers, no model calls
 
 Versions, all from the same cached model answers:
@@ -112,7 +113,7 @@ GATE = [
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("split", choices=["dev", "holdout"])
+    ap.add_argument("split", choices=["dev", "holdout", "holdout2"])
     ap.add_argument("--docs", help="comma-separated document ids")
     ap.add_argument("--model", default=config.GEMINI_MODEL)
     ap.add_argument("--offline", action="store_true")

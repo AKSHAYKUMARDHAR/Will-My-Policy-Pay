@@ -1,0 +1,45 @@
+  D01: 12 shown, 2 reads, 6,336 in / 8,893 out tokens
+  D02: 9 shown, 2 reads, 34,072 in / 11,971 out tokens
+  D03: 9 shown, 2 reads, 35,136 in / 13,193 out tokens
+  D04: 11 shown, 2 reads, 28,752 in / 13,031 out tokens
+  D05: 13 shown, 2 reads, 54,288 in / 12,930 out tokens
+  H01: 14 shown, 2 reads, 41,520 in / 10,625 out tokens
+  H02: 12 shown, 2 reads, 6,336 in / 9,610 out tokens
+  H03: 11 shown, 2 reads, 14,656 in / 10,370 out tokens
+  H04: 15 shown, 2 reads, 50,032 in / 17,110 out tokens
+  H05: 14 shown, 2 reads, 91,528 in / 13,601 out tokens
+  H06: 14 shown, 2 reads, 118,656 in / 15,813 out tokens
+  H07: 9 shown, 2 reads, 45,776 in / 13,557 out tokens
+  H08: 13 shown, 2 reads, 73,936 in / 19,662 out tokens
+  H09: 16 shown, 2 reads, 34,072 in / 16,086 out tokens
+
+dev: 14/14 documents, model gemini-3.5-flash, prompt v3-41c58ae8
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                 237 |      218      2        17 |     92.0     0.8
+2 reads, no check      237 |      226      5         6 |     95.4     2.1
+2 reads + check        237 |      220      1        16 |     92.8     0.4
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 14/0/0  icu: 14/0/0  copay: 9/0/5  copay_senior: 14/0/0  deductible: 14/0/0  initial_waiting_days: 14/0/0  ped_waiting_months: 14/0/0  specific_waiting_months: 11/1/2  maternity: 13/0/1  pre_hosp_days: 14/0/0  post_hosp_days: 14/0/0  cataract: 14/0/0  restoration: 14/0/0  ncb: 12/0/1  ambulance: 11/0/3  modern_treatments: 13/0/1  ayush: 11/0/3
+why withheld: {'number_not_in_quote': 2, 'shared_ceiling': 2, 'exemption_not_none': 3, 'quote_not_found': 3, 'reads_disagree': 2}
+
+Wrong facts shown:
+  H09.specific_waiting_months: shown '3,24', label '0.5,3,24', p15: 'Surgeries/treatments shall be excluded until the expiry of 24 months of continuous coverage after the date of '
+
+Withheld facts:
+  D02.specific_waiting_months [number_not_in_quote] label '12,24': '12,24' p10 | '12,24' p10
+  D02.ambulance [shared_ceiling] label 'up_to_si': 'up_to_si' p2 | 'up_to_si' p2
+  D02.ayush [shared_ceiling] label 'not_stated': 'up_to_si' p4 | 'up_to_si' p4
+  D03.ayush [] label 'up_to_si': 
+  D04.copay [exemption_not_none] label 'not_stated': '0' p14 | '0' p14
+  D04.ambulance [quote_not_found] label 'amount:2500': 'amount:2500' p20 | 'amount:2500' p20
+  D05.copay [exemption_not_none] label 'not_stated': '0' p39 | '0' p39
+  D05.ambulance [] label 'up_to_si': 
+  H01.specific_waiting_months [number_not_in_quote] label '3,24,36,48': '3,24,36,48' p17 | '3,24,36,48' p17
+  H02.copay [quote_not_found] label '5': '5' p2 | '5' p2
+  H04.copay [exemption_not_none] label 'not_stated': '0' p21 | '0' p21
+  H05.ncb [quote_not_found] label '50,max:100': '50,max:100' p21 | '50,max:100' p20
+  H06.maternity [reads_disagree] label 'not_covered': 'not_stated' p87 | 'not_covered' p87
+  H07.modern_treatments [] label 'up_to_si': 
+  H07.ayush [] label 'up_to_si': 
+  H08.copay [reads_disagree] label 'not_stated': '0' p50 | 'not_stated' pNone
