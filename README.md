@@ -8,8 +8,8 @@ pay and why.
 
 - Live: https://will-my-policy-pay.onrender.com
 - Product requirements: [docs/PRD.md](docs/PRD.md)
-- Status: built and live, but **the release is blocked**: on 9 policies it had never seen, 3.3% of facts
-  were wrong against a 2% bar (see Results).
+- Status: built and live. Release run 1 was blocked (3.3% of facts wrong against a 2% bar); on review,
+  3 of its 5 wrong facts were answer-key mistakes. Release run 2, on fresh documents, is next (see Results).
 
 Built with Claude Code, after my [UPI Triage Agent](https://github.com/AKSHAYKUMARDHAR/UPI-Triage-Agent)
 and [Is This a Scam?](https://github.com/AKSHAYKUMARDHAR/Is-This-A-Scam). This time the evaluation
@@ -117,28 +117,37 @@ Run once on the frozen configuration (prompt v3, gemini-3.5-flash, two reads, ev
 5 of 152, where 3 would pass). Every value shown had its quote found on the cited page, and the bill
 simulator matches all 25 hand-worked bills.
 
-The 5 wrong facts:
+The 5 wrong facts, on review (the score above stands, because held-out labels never change after a run):
 
-- **One real error of the kind this product exists to prevent.** HDFC ERGO my:Optima Secure (H08):
-  AYUSH shown as "up to the sum insured" from "Covered upto sum insured", a cell in a plan table where
-  almost every row says the same. The quote never names AYUSH, which is capped at a sub-limit set in the
-  policy schedule. The words check passed because the words were right for another row. Next: the quote
-  for an item's limit must name the item.
 - **Two answers wider than the answer key.** ICICI Lombard Elevate (H06) and SBI Arogya Supreme (H09):
   the specific-illness waiting period shown as 3 and 24 months, joining the 24-month clause with a
-  separate 90-day wait for some illnesses (hypertension, diabetes and heart conditions at SBI). The
-  label guide counts only the specific-illness clause, yet for a buyer with diabetes the 90 days is real.
-  The guide and the prompt need one definition.
-- **Two that look like answer-key mistakes by my own guide.** H08's deductible clause is an optional
-  "Aggregate Deductible" cover ("can be opted only at inception"); rule 2 says an optional deductible
-  means the base plan has none, which is what the model said. H09's "Sum Insured Refill" (100%) is item
-  18 of the base covers, and the key missed it. Held-out labels never change after a run, so both stay
-  wrong; reversed, 3 of 152 would sit exactly at the bar, not clearly under it. A second labeller should
-  settle them.
+  separate 90-day wait for hypertension, diabetes and heart conditions. The guide counted only the
+  specific-illness clause, yet for a buyer with diabetes the 90 days is real.
+- **Three mistakes in my answer key.** H08's deductible is an optional "Aggregate Deductible" cover
+  ("can be opted only at inception"), and rule 2 says the base plan then has none, as the model said.
+  H09's "Sum Insured Refill" (100%) is item C.18 of the base covers, which the key missed. H08's AYUSH
+  limit: the plan table on page 61 gives every plan "AYUSH Treatment: Covered upto sum insured", and the
+  model quoted that row; the key had used only the wording on page 7, which leaves the sub-limit to the
+  policy schedule.
 
-What happens next: these 9 documents have now been seen, so they move to development, and the next
-release run needs fresh held-out documents. The ready-made cards stay at the 5 dev documents, because
-publishing the held-out cards would knowingly show the AYUSH error.
+So none of the 5 is a clear model error. My first write-up of this run called the AYUSH answer the
+error this product exists to prevent, read from a cell that never names AYUSH; that was wrong, and the
+check I drafted from it (an item's quote must name the item) cost 4 correct dev answers and caught
+nothing, so it was dropped.
+
+### Version 2: the answer-key rules, then a fresh release run
+
+These 9 documents have now been seen, so they joined the dev set with the corrections above and a
+wider definition of the specific-illness waiting period: the Excl02 clause plus any other wait the
+exclusions set for named illnesses. Both are logged in [data/LABEL_GUIDE.md](data/LABEL_GUIDE.md);
+`labels_holdout.json` keeps the key release run 1 was scored against. The system itself is unchanged.
+
+| Dev, v2 answer keys (14 documents, 237 facts) | Correct | Wrong | Withheld |
+| --- | --- | --- | --- |
+| 2 reads + checks, re-scored from the cached answers | 92.8% | 0.4% (1) | 6.8% |
+
+The one wrong fact is SBI's 15-day wait for COVID-19, which the model leaves out of the list. Release
+run 2 runs once on fresh documents, labelled under the v2 rules before any model reads them.
 
 ## Run it locally
 
