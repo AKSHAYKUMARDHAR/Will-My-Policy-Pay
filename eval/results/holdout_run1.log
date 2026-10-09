@@ -1,0 +1,40 @@
+  H01: 14 shown, 2 reads, 41,520 in / 10,625 out tokens
+  H02: 12 shown, 2 reads, 6,336 in / 9,610 out tokens
+  H03: 11 shown, 2 reads, 14,656 in / 10,370 out tokens
+  H04: 15 shown, 2 reads, 50,032 in / 17,110 out tokens
+  H05: 14 shown, 2 reads, 91,528 in / 13,601 out tokens
+  H06: 14 shown, 2 reads, 118,656 in / 15,813 out tokens
+  H07: 9 shown, 2 reads, 45,776 in / 13,557 out tokens
+  H08: 13 shown, 2 reads, 73,936 in / 19,662 out tokens
+  H09: 16 shown, 2 reads, 34,072 in / 16,086 out tokens
+
+holdout: 9/9 documents, model gemini-3.5-flash, prompt v3-41c58ae8
+version              facts |  correct  wrong  withheld | correct%  wrong%
+1 read                 152 |      138      6         8 |     90.8     3.9
+2 reads, no check      152 |      142      6         4 |     93.4     3.9
+2 reads + check        152 |      139      5         8 |     91.4     3.3
+
+by term (2 reads + check): correct / wrong / withheld
+  room_rent: 9/0/0  icu: 9/0/0  copay: 6/0/3  copay_senior: 9/0/0  deductible: 8/1/0  initial_waiting_days: 9/0/0  ped_waiting_months: 9/0/0  specific_waiting_months: 6/2/1  maternity: 8/0/1  pre_hosp_days: 9/0/0  post_hosp_days: 9/0/0  cataract: 9/0/0  restoration: 8/1/0  ncb: 7/0/1  ambulance: 9/0/0  modern_treatments: 8/0/1  ayush: 7/1/1
+why withheld: {'number_not_in_quote': 1, 'quote_not_found': 2, 'exemption_not_none': 1, 'reads_disagree': 2}
+
+Wrong facts shown:
+  H06.specific_waiting_months: shown '3,24', label '24', p84: 'Specific Waiting Period ... until the expiry of 24 months of continuous coverage ... Treatment of the below me'
+  H08.deductible: shown '0', label 'not_stated', p13: 'This Cover is applicable on annual aggregate basis and can be opted only at inception of the Policy or at subs'
+  H08.ayush: shown 'up_to_si', label 'not_stated', p61: 'Covered upto sum insured'
+  H09.specific_waiting_months: shown '3,24', label '24', p15: 'Surgeries/treatments shall be excluded until the expiry of 24 months of continuous coverage after the date of '
+  H09.restoration: shown '100', label 'not_stated', p12: 'We will refill 100% Basic Sum Insured on complete or partial utilization of Your existing Policy Sum Insured i'
+
+Withheld facts:
+  H01.specific_waiting_months [number_not_in_quote] label '3,24,36,48': '3,24,36,48' p17 | '3,24,36,48' p17
+  H02.copay [quote_not_found] label '5': '5' p2 | '5' p2
+  H04.copay [exemption_not_none] label 'not_stated': '0' p21 | '0' p21
+  H05.ncb [quote_not_found] label '50,max:100': '50,max:100' p21 | '50,max:100' p20
+  H06.maternity [reads_disagree] label 'not_covered': 'not_stated' p87 | 'not_covered' p87
+  H07.modern_treatments [] label 'up_to_si': 
+  H07.ayush [] label 'up_to_si': 
+  H08.copay [reads_disagree] label 'not_stated': '0' p50 | 'not_stated' pNone
+
+Release gate (PRD):
+  [FAIL] Wrong facts shown <= 2% of labelled facts
+  [PASS] Correct facts >= 85% of labelled facts

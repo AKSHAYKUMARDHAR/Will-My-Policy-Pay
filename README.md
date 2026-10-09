@@ -8,7 +8,8 @@ pay and why.
 
 - Live: https://will-my-policy-pay.onrender.com
 - Product requirements: [docs/PRD.md](docs/PRD.md)
-- Status: built and live; the configuration is frozen and the held-out release run is next (see Results).
+- Status: built and live, but **the release is blocked**: on 9 policies it had never seen, 3.3% of facts
+  were wrong against a 2% bar (see Results).
 
 Built with Claude Code, after my [UPI Triage Agent](https://github.com/AKSHAYKUMARDHAR/UPI-Triage-Agent)
 and [Is This a Scam?](https://github.com/AKSHAYKUMARDHAR/Is-This-A-Scam). This time the evaluation
@@ -103,8 +104,41 @@ What the dev runs showed:
 
 ### Held-out set (9 documents, 152 facts): the release run
 
-Pending: runs once on the frozen configuration (prompt v3, gemini-3.5-flash, two reads, every check
-above), from 9 October 2026.
+Run once on the frozen configuration (prompt v3, gemini-3.5-flash, two reads, every check above) on
+9 October 2026: [eval/results/holdout_run1.log](eval/results/holdout_run1.log).
+
+| Run | Correct | Wrong | Withheld |
+| --- | --- | --- | --- |
+| 1 read, no checks | 90.8% | 3.9% (6) | 5.3% |
+| 2 reads, no checks | 93.4% | 3.9% (6) | 2.6% |
+| **2 reads + checks (what ships)** | **91.4%** (139) | **3.3%** (5) | 5.3% (8) |
+
+**Release gate: blocked.** Correct facts pass (91.4% against 85%); wrong facts fail (3.3% against 2%:
+5 of 152, where 3 would pass). Every value shown had its quote found on the cited page, and the bill
+simulator matches all 25 hand-worked bills.
+
+The 5 wrong facts:
+
+- **One real error of the kind this product exists to prevent.** HDFC ERGO my:Optima Secure (H08):
+  AYUSH shown as "up to the sum insured" from "Covered upto sum insured", a cell in a plan table where
+  almost every row says the same. The quote never names AYUSH, which is capped at a sub-limit set in the
+  policy schedule. The words check passed because the words were right for another row. Next: the quote
+  for an item's limit must name the item.
+- **Two answers wider than the answer key.** ICICI Lombard Elevate (H06) and SBI Arogya Supreme (H09):
+  the specific-illness waiting period shown as 3 and 24 months, joining the 24-month clause with a
+  separate 90-day wait for some illnesses (hypertension, diabetes and heart conditions at SBI). The
+  label guide counts only the specific-illness clause, yet for a buyer with diabetes the 90 days is real.
+  The guide and the prompt need one definition.
+- **Two that look like answer-key mistakes by my own guide.** H08's deductible clause is an optional
+  "Aggregate Deductible" cover ("can be opted only at inception"); rule 2 says an optional deductible
+  means the base plan has none, which is what the model said. H09's "Sum Insured Refill" (100%) is item
+  18 of the base covers, and the key missed it. Held-out labels never change after a run, so both stay
+  wrong; reversed, 3 of 152 would sit exactly at the bar, not clearly under it. A second labeller should
+  settle them.
+
+What happens next: these 9 documents have now been seen, so they move to development, and the next
+release run needs fresh held-out documents. The ready-made cards stay at the 5 dev documents, because
+publishing the held-out cards would knowingly show the AYUSH error.
 
 ## Run it locally
 
