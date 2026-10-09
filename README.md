@@ -149,7 +149,7 @@ exclusions set for named illnesses. Both are logged in [data/LABEL_GUIDE.md](dat
 
 The one wrong fact is SBI's 15-day wait for COVID-19, which the model leaves out of the list.
 
-### Release run 2: blocked again (first 4 of 9 fresh documents)
+### Release run 2: blocked again (stopped after 4 of 9 fresh documents)
 
 Nine fresh documents were frozen before any labelling (`51ac132`): Go Digit, IFFCO Tokio, National
 (Mediclaim Plus), Kotak, Liberty (Health Prime Connect and the Health Connect Supra super top-up), Galaxy
@@ -159,8 +159,9 @@ terms skipped, so the 2% bar allows 2 wrong. The system was unchanged since `499
 
 The run met an outage: both reads of the first document (Digit) got 503 "high demand" errors, and the
 retries counted against the free daily limit, which ran out after four documents. The harness now
-leaves a document the provider never served out of the scores, and caps retries; the other five
-documents are read on 10 October, and the four below keep their saved answers.
+leaves a document the provider never served out of the scores, and caps retries. With the gate already
+failed after four documents, the run was not resumed: the other five (Digit, Galaxy, Bajaj, Liberty Supra
+and SBI) stay frozen and labelled for a future run.
 
 | First 4 documents, 67 facts ([log](eval/results/holdout2_part1_scores.log)) | Correct | Wrong | Withheld |
 | --- | --- | --- | --- |
