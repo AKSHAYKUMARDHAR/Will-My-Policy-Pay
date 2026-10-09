@@ -21,6 +21,8 @@ WHY_CHECK = {
     "malformed": "We couldn't read this term reliably.",
     "no_answer": "We couldn't read this term.",
     "document_flagged": "This document contains text aimed at AI tools, so nothing is shown without your own check.",
+    "review_disagrees": "Checked by hand against the document, this reading doesn't match it. Read the clause yourself.",
+    "review_unsettled": "This depends on the plan or options you buy, so check it in your policy schedule.",
 }
 
 

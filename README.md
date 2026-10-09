@@ -225,7 +225,10 @@ checker's always-on service uses its workspace's hours.
   Spaces on free hardware.
 
 The ready-made cards ship in the image (`data/catalogue.json`), so they work with no API key; only
-uploads call Gemini.
+uploads call Gemini. There are 18, one for each document the evaluation has read, and each is checked
+against the hand-written answer key before it ships: a value the key contradicts or can't settle (a
+plan-dependent term) is shown as "check this yourself" with the readings. Six values are, among them
+the four wrong facts found by the evaluation. Uploads get no such review, and the site says so.
 
 ## API
 
