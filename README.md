@@ -146,8 +146,16 @@ exclusions set for named illnesses. Both are logged in [data/LABEL_GUIDE.md](dat
 | --- | --- | --- | --- |
 | 2 reads + checks, re-scored from the cached answers | 92.8% | 0.4% (1) | 6.8% |
 
-The one wrong fact is SBI's 15-day wait for COVID-19, which the model leaves out of the list. Release
-run 2 runs once on fresh documents, labelled under the v2 rules before any model reads them.
+The one wrong fact is SBI's 15-day wait for COVID-19, which the model leaves out of the list.
+
+### Release run 2: 9 fresh documents (pending)
+
+Frozen before any labelling (`51ac132`): Go Digit, IFFCO Tokio, National (Mediclaim Plus), Kotak, Liberty
+(Health Prime Connect and the Health Connect Supra super top-up), Galaxy Health, Bajaj (Health Guard)
+and SBI (Arogya Plus); five of the insurers are new to the project. The answer key was written under the
+v2 rules before any model read them (`26e6d75`): 141 scored facts, 80 stated and 61 "not stated", with
+12 plan-dependent terms skipped. At 141 facts the 2% bar allows 2 wrong. It runs once on 10 October 2026,
+on the unchanged system.
 
 ## Run it locally
 
